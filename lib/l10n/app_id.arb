@@ -1,0 +1,120 @@
+{
+  "@@locale": "id",
+  "appName": "Incentive",
+  "@appName": {
+    "description": "App name"
+  },
+  "emailLabel": "Email",
+  "@emailLabel": {
+    "description": "email label"
+  },
+  "inputEmailHint": "Masukkan email Anda",
+  "@inputEmailHint": {
+    "description": "Input email hint"
+  },
+  "emailIsNotValidError": "Email tidak valid",
+  "@emailIsNotValidError": {
+    "description": "Email is not valid error"
+  },
+  "emailCannotBeEmptyError": "Email tidak bisa kosong",
+  "@emailCannotBeEmptyError": {
+    "description": "Email cannot be empty error"
+  },
+  "passwordLabel": "Kata Sandi",
+  "@passwordLabel": {
+    "description": "Password label"
+  },
+  "inputPasswordHint": "Masukkan kata sandi Anda",
+  "@inputPasswordHint": {
+    "description": "Input kata sandi hint"
+  },
+  "passwordCannotBeEmptyError": "Kata sandi tidak bisa kosong",
+  "@passwordCannotBeEmptyError": {
+    "description": "Password cannot be empty error"
+  },
+  "minimumPasswordLengthNotAchieved": "Password harus lebih dari 6 karakter",
+  "@minimumPasswordLengthNotAchieved": {
+    "description": "Minimum password length not achieved"
+  },
+  "loginLabel": "Masuk",
+  "@loginLabel": {
+    "description": "Login label"
+  },
+  "homeLabel": "Beranda",
+  "@homeLabel": {
+    "description": "Home label"
+  },
+  "filterLabel": "Filter",
+  "@filterLabel": {
+    "description": "Filter label"
+  },
+  "resetFilterLabel": "Atur Ulang",
+  "@resetFilterLabel": {
+    "description": "Reset filter label"
+  },
+  "periodLabel": "Periode",
+  "@periodLabel": {
+    "description": "Period label"
+  },
+  "applyLabel": "Terapkan",
+  "@applyLabel": {
+    "description": "Apply label"
+  },
+  "allLabel": "Semua",
+  "@allLabel": {
+    "description": "All label"
+  },
+  "settingLabel": "Pengaturan",
+  "@settingLabel": {
+    "description": "Setting label"
+  },
+  "darkModeLabel": "Mode Gelap",
+  "@darkModeLabel": {
+    "description": "Dark mode label"
+  },
+  "logoutLabel": "Keluar",
+  "@logoutLabel": {
+    "description": "Logout label"
+  },
+  "logoutConfirmationTitle": "Anda yakin untuk keluar?",
+  "@logoutConfirmationTitle": {
+    "description": "logout confirmation"
+  },
+  "cancelLabel": "Batal",
+  "@cancelLabel": {
+    "description": "Cancel label"
+  },
+  "versionNumber": "Versi {version}",
+  "@versionNumber": {
+    "description": "Version number",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "languageLabel": "Bahasa",
+  "@languageLabel": {
+    "description": "Language label"
+  },
+  "noItemFound": "Item tidak ditemukan",
+  "@noItemFound": {
+    "description": "No item found"
+  },
+  "refreshLabel": "Muat ulang",
+  "@refreshLabel": {
+    "description": "Refresh label"
+  },
+  "somethingWentWrongError": "Terjadi kesalahan",
+  "@somethingWentWrongError": {
+    "description": "Something went wrong error"
+  },
+  "pleaseTryAgain": "Silahkan coba lagi",
+  "@pleaseTryAgain": {
+    "description": "Please try again"
+  },
+  "tryAgain": "Coba lagi",
+  "@tryAgain": {
+    "description": "Try again"
+  }
+}
