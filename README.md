@@ -1,5 +1,16 @@
-# Sales Hub / Incentive
+# psm_incentive
 
-1. Kunjungi halaman [unduhan](https://github.com/planetsurfonline/incentive-app/releases/latest) kami untuk mendapatkan versi terbaru dari **SalesHub**.
-2. Setelah unduhan selesai, buka file `.apk`.
-3. Lanjutkan dengan proses instalasi.
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
