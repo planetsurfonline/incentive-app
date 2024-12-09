@@ -1,0 +1,36 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "run dev env",
+      "request": "launch",
+      "type": "dart",
+      "toolArgs": ["--dart-define-from-file=.env_mobile/dev.json"]
+    },
+    // {
+    //   "name": "run staging env",
+    //   "request": "launch",
+    //   "type": "dart",
+    //   "toolArgs": ["--dart-define-from-file=.env/staging.json"]
+    // },
+    // {
+    //   "name": "run prod env",
+    //   "request": "launch",
+    //   "type": "dart",
+    //   "toolArgs": ["--dart-define-from-file=.env/prod.json"]
+    // },
+    // {
+    //   "name": "run testing env",
+    //   "request": "launch",
+    //   "type": "dart",
+    //   "toolArgs": ["--dart-define-from-file=.env/testing.json"]
+    // }
+    {
+      "name": "run profile env",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "toolArgs": ["--dart-define-from-file=.env_mobile/dev.json"]
+    }
+  ]
+}
