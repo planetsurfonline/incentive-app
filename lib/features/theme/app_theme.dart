@@ -135,14 +135,14 @@ ThemeData buildTheme() {
         padding: const WidgetStatePropertyAll(EdgeInsets.zero),
         visualDensity: VisualDensity.compact,
         textStyle: WidgetStateProperty.all(
-          GoogleFonts.poppins(
+          GoogleFonts.inter(
             textStyle: const TextStyle(fontSize: 16),
           ),
         ),
         foregroundColor: const WidgetStatePropertyAll(Colors.black),
       ),
     ),
-    textTheme: GoogleFonts.poppinsTextTheme(baseTheme.textTheme),
+    textTheme: GoogleFonts.interTextTheme(baseTheme.textTheme),
   );
 }
 
@@ -283,7 +283,7 @@ ThemeData buildDarkTheme() {
         padding: const WidgetStatePropertyAll(EdgeInsets.zero),
         visualDensity: VisualDensity.compact,
         textStyle: WidgetStateProperty.all(
-          GoogleFonts.poppins(
+          GoogleFonts.inter(
             textStyle: const TextStyle(fontSize: 16),
             color: Colors.white,
           ),
@@ -291,6 +291,6 @@ ThemeData buildDarkTheme() {
         foregroundColor: const WidgetStatePropertyAll(Colors.white),
       ),
     ),
-    textTheme: GoogleFonts.poppinsTextTheme(baseTheme.textTheme),
+    textTheme: GoogleFonts.interTextTheme(baseTheme.textTheme),
   );
 }

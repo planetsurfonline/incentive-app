@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:psm_incentive/features/incentives/presentation/home_page/widgets/incentive_amount.dart';
 import 'package:psm_incentive/utils/extensions/build_context_x.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -18,6 +19,12 @@ class HomePage extends StatelessWidget {
             },
             icon: const Icon(Icons.logout_rounded),
           )
+        ],
+      ),
+      body: const Column(
+        children: [
+          IncentiveAmount(),
+          Divider(),
         ],
       ),
     );
