@@ -40,11 +40,13 @@ class ErrorView extends StatelessWidget {
           Text(
             title!,
             style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
           ),
         if (subtitle != null)
           Text(
             subtitle!,
             style: GoogleFonts.poppins(fontSize: 12),
+            textAlign: TextAlign.center,
           ),
         if (action != null)
           Padding(
