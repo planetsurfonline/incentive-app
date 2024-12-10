@@ -21,3 +21,7 @@ final class AppToggleLanguage extends ThemeEvent {
   @override
   List<Object> get props => [localeString];
 }
+
+final class SettingGetNominalVisibility extends ThemeEvent {}
+
+final class SettingToggleNominalVisibility extends ThemeEvent {}

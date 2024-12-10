@@ -12,9 +12,11 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(const ThemeState()) {
     on<ThemeGetMode>(_onThemeGetMode);
     on<AppGetInitialLocale>(_onAppGetInitialLocale);
+    on<SettingGetNominalVisibility>(_onSettingGetNominalVisibility);
 
     on<AppToggleThemeMode>(_onAppToggleThemeMode);
     on<AppToggleLanguage>(_onAppToggleLanguage);
+    on<SettingToggleNominalVisibility>(_onSettingToggleNominalVisibility);
   }
 
   Future<void> _onAppGetInitialLocale(
@@ -93,6 +95,38 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       emit(state.copyWith(
         locale: Locale(event.localeString, 'ID'),
       ));
+    } catch (e) {
+      log('ThemeBloc _onAppToggleLanguage => ${e.toString()}');
+    }
+  }
+
+  Future<void> _onSettingGetNominalVisibility(
+    _,
+    Emitter<ThemeState> emit,
+  ) async {
+    try {
+      final preference = await SharedPreferences.getInstance();
+
+      final result = preference.getBool('SHOW_NOMINAL') ?? true;
+
+      emit(state.copyWith(showNominal: result));
+    } catch (e) {
+      log('ThemeBloc _onAppGetInitialLocale => ${e.toString()}');
+    }
+  }
+
+  Future<void> _onSettingToggleNominalVisibility(
+    _,
+    Emitter<ThemeState> emit,
+  ) async {
+    final preference = await SharedPreferences.getInstance();
+
+    try {
+      emit(state.copyWith(
+        showNominal: !state.showNominal,
+      ));
+
+      await preference.setBool('SHOW_NOMINAL', state.showNominal);
     } catch (e) {
       log('ThemeBloc _onAppToggleLanguage => ${e.toString()}');
     }

@@ -12,8 +12,8 @@ class IncentivesRepository {
       final result = await _historyProvider.getRecentHistoryData();
 
       // TODO: Convert result to List of History Item
-      return [];
-      // return Dummy.getHistoryItem();
+      // return [];
+      return Dummy.getHistoryItem();
 
       // return result;
     } catch (e) {

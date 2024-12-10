@@ -28,7 +28,8 @@ class IncentiveApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ThemeBloc()
             ..add(ThemeGetMode())
-            ..add(AppGetInitialLocale()),
+            ..add(AppGetInitialLocale())
+            ..add(SettingGetNominalVisibility()),
         ),
       ],
       child: const IncentiveAppView(),

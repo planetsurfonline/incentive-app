@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:psm_incentive/features/app/presentation/theme_bloc/theme_bloc.dart';
 import 'package:psm_incentive/features/incentives/presentation/incentive/bloc/incentive_bloc.dart';
 import 'package:psm_incentive/shared/enum/status.dart';
 import 'package:psm_incentive/shared/widgets/shimmer_placeholders.dart';
@@ -47,24 +48,43 @@ class IncentiveAmount extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
-                      Flexible(
-                        child: Text(
-                          // TODO: Change to use data from API
-                          state.incentiveAmount == 0
-                              ? '0,00'
-                              : NumberFormatter.formatNumber(
-                                  state.incentiveAmount),
-                          style: GoogleFonts.inter(fontSize: 48),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          // TODO: Implement show/hide
+                      BlocBuilder<ThemeBloc, ThemeState>(
+                        builder: (context, settingState) {
+                          if (!settingState.showNominal) {
+                            return Text(
+                              '******',
+                              style: GoogleFonts.inter(fontSize: 48),
+                            );
+                          }
+
+                          return Flexible(
+                            child: Text(
+                              // TODO: Change to use data from API
+                              state.incentiveAmount == 0
+                                  ? '0,00'
+                                  : NumberFormatter.formatNumber(
+                                      state.incentiveAmount),
+                              style: GoogleFonts.inter(fontSize: 48),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                            ),
+                          );
                         },
-                        icon: const Icon(Icons.visibility),
+                      ),
+                      BlocBuilder<ThemeBloc, ThemeState>(
+                        builder: (context, state) {
+                          return IconButton(
+                            onPressed: () {
+                              context
+                                  .read<ThemeBloc>()
+                                  .add(SettingToggleNominalVisibility());
+                            },
+                            icon: Icon(state.showNominal
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined),
+                          );
+                        },
                       ),
                     ],
                   ),
