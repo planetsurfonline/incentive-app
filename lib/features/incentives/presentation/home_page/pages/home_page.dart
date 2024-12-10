@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:psm_incentive/features/incentives/presentation/home_page/widgets/incentive_amount.dart';
+import 'package:psm_incentive/features/incentives/presentation/home_page/widgets/widgets.dart';
 import 'package:psm_incentive/utils/extensions/build_context_x.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -22,9 +22,11 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           IncentiveAmount(),
           Divider(),
+          RecentHistorySection(),
         ],
       ),
     );
