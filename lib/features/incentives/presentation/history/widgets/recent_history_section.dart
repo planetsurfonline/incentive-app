@@ -6,6 +6,7 @@ import 'package:psm_incentive/shared/enum/status.dart';
 import 'package:psm_incentive/shared/widgets/widgets.dart';
 import 'package:psm_incentive/utils/constants.dart';
 import 'package:psm_incentive/utils/extensions/build_context_x.dart';
+import 'package:shimmer/shimmer.dart';
 
 class RecentHistorySection extends StatelessWidget {
   const RecentHistorySection({
@@ -29,33 +30,34 @@ class RecentHistorySection extends StatelessWidget {
           BlocBuilder<IncentiveHistoryBloc, IncentiveHistoryState>(
             builder: (context, state) {
               if (state.status == Status.loading) {
-                // TODO: Create shimmer loading for 5 item
-                return Center(
-                  child: CircularProgressIndicator(
-                    color: context.customColor?.invertedProgressColor,
-                  ),
-                );
+                return const _RecentHistoryLoading();
               }
 
               if (state.status == Status.error) {
-                return Center(
-                  child: ErrorView(
-                    title: 'Cannot load recent history data. Please try again',
-                    actionTitle: context.strings.tryAgain,
-                    action: () {
-                      context
-                          .read<IncentiveHistoryBloc>()
-                          .add(IncentiveHistoryGetRecentData());
-                    },
+                return Expanded(
+                  child: Center(
+                    child: ErrorView(
+                      title:
+                          'Cannot load recent history data. Please try again',
+                      actionTitle: context.strings.tryAgain,
+                      action: () {
+                        context
+                            .read<IncentiveHistoryBloc>()
+                            .add(IncentiveHistoryGetRecentData());
+                      },
+                    ),
                   ),
                 );
               }
 
               if (state.recentHistories.isEmpty) {
-                return const Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: padding),
-                    child: Text('You don\'t have any history record'),
+                return const Padding(
+                  padding: EdgeInsets.only(top: extraLargePadding),
+                  child: Center(
+                    child: ErrorView(
+                      subtitle: 'Your incentive history\nwill show up here',
+                      icon: Icon(Icons.account_balance_wallet_outlined),
+                    ),
                   ),
                 );
               }
@@ -92,6 +94,63 @@ class RecentHistorySection extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _RecentHistoryLoading extends StatelessWidget {
+  const _RecentHistoryLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: mediumPadding),
+        Shimmer.fromColors(
+          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
+          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
+          child: const BannerPlaceholder(
+            height: 56,
+            width: double.infinity,
+          ),
+        ),
+        const SizedBox(height: mediumPadding),
+        Shimmer.fromColors(
+          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
+          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
+          child: const BannerPlaceholder(
+            height: 56,
+            width: double.infinity,
+          ),
+        ),
+        const SizedBox(height: mediumPadding),
+        Shimmer.fromColors(
+          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
+          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
+          child: const BannerPlaceholder(
+            height: 56,
+            width: double.infinity,
+          ),
+        ),
+        const SizedBox(height: mediumPadding),
+        Shimmer.fromColors(
+          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
+          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
+          child: const BannerPlaceholder(
+            height: 56,
+            width: double.infinity,
+          ),
+        ),
+        const SizedBox(height: mediumPadding),
+        Shimmer.fromColors(
+          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
+          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
+          child: const BannerPlaceholder(
+            height: 56,
+            width: double.infinity,
+          ),
+        ),
+      ],
     );
   }
 }
