@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:psm_incentive/utils/constants.dart';
+import 'package:psm_incentive/utils/extensions/build_context_x.dart';
 
 class ErrorView extends StatelessWidget {
   const ErrorView({
     super.key,
-    required this.title,
+    this.title,
     this.subtitle,
     this.action,
     this.icon,
+    this.iconBackgroundColor,
     this.actionTitle,
   });
 
   final Widget? icon;
-  final String title;
+  final String? title;
   final String? subtitle;
   final Function()? action;
+  final Color? iconBackgroundColor;
   final String? actionTitle;
 
   @override
@@ -29,13 +32,15 @@ class ErrorView extends StatelessWidget {
       children: [
         CircleAvatar(
           radius: 32,
+          backgroundColor: context.customColor?.iconBackgroundColor,
           child: icon ?? const Icon(Icons.close_rounded, size: 32),
         ),
         const SizedBox(height: padding),
-        Text(
-          title,
-          style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
-        ),
+        if (title != null)
+          Text(
+            title!,
+            style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
+          ),
         if (subtitle != null)
           Text(
             subtitle!,
