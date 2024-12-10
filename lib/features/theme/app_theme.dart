@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:psm_incentive/features/theme/custom_colors.dart';
 import 'package:psm_incentive/utils/constants.dart';
 
 ThemeData buildTheme() {
@@ -48,7 +49,7 @@ ThemeData buildTheme() {
         fixedSize: const Size.fromHeight(56),
       ),
     ),
-    // extensions: [CustomColors.light],
+    extensions: [CustomColors.light],
     iconTheme: const IconThemeData(color: Colors.black),
     iconButtonTheme: const IconButtonThemeData(
       style: ButtonStyle(
@@ -191,7 +192,7 @@ ThemeData buildDarkTheme() {
         fixedSize: const Size.fromHeight(56),
       ),
     ),
-    // extensions: [CustomColors.dark],
+    extensions: [CustomColors.dark],
     iconButtonTheme: const IconButtonThemeData(
       style: ButtonStyle(
         visualDensity: VisualDensity.compact,

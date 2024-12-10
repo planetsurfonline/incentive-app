@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:psm_incentive/utils/constants.dart';
+import 'package:psm_incentive/utils/formatter/date_formatter.dart';
 import 'package:psm_incentive/utils/formatter/number_formatter.dart';
 
 class IncentiveHistoryItem extends StatelessWidget {
-  const IncentiveHistoryItem({super.key});
+  final String invoiceNumber;
+  final DateTime invoiceDate;
+  final double incentiveAmount;
+
+  const IncentiveHistoryItem({
+    super.key,
+    required this.invoiceNumber,
+    required this.invoiceDate,
+    required this.incentiveAmount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +37,22 @@ class IncentiveHistoryItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      // TODO: Chage to use data from API / mock
-                      'INV #30072002',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge
-                          ?.copyWith(fontWeight: FontWeight.bold),
+                    Flexible(
+                      child: Text(
+                        // TODO: Chage to use data from API
+                        invoiceNumber,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
                     ),
+                    const SizedBox(width: padding),
                     Text(
-                      // TODO: Chage to use data from API / mock
-                      '+ Rp ${NumberFormatter.formatNumber(25000)}',
+                      // TODO: Chage to use data from API
+                      '+ Rp ${NumberFormatter.formatNumber(incentiveAmount)}',
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium
@@ -45,8 +60,8 @@ class IncentiveHistoryItem extends StatelessWidget {
                     )
                   ],
                 ),
-                // TODO: Use date from API / mock
-                const Text('9 Dec 2024')
+                // TODO: Use date from API
+                Text(DateFormatter.getShortDate(invoiceDate))
               ],
             ),
           )
