@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:psm_incentive/features/app/presentation/theme_bloc/theme_bloc.dart';
 import 'package:psm_incentive/utils/constants.dart';
 import 'package:psm_incentive/utils/formatter/date_formatter.dart';
 import 'package:psm_incentive/utils/formatter/number_formatter.dart';
@@ -50,13 +52,17 @@ class IncentiveHistoryItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: padding),
-                    Text(
-                      // TODO: Chage to use data from API
-                      '+ Rp ${NumberFormatter.formatNumber(incentiveAmount)}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w500),
+                    BlocBuilder<ThemeBloc, ThemeState>(
+                      builder: (context, settingState) {
+                        return Text(
+                          // TODO: Chage to use data from API
+                          '+ Rp ${settingState.showNominal ? NumberFormatter.formatNumber(incentiveAmount) : '******'}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.w500),
+                        );
+                      },
                     )
                   ],
                 ),
