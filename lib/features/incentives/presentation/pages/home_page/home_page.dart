@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:psm_incentive/features/filter/data/filter_repository.dart';
+import 'package:psm_incentive/features/filter/presentation/period_picker/bloc/period_picker_bloc.dart';
 import 'package:psm_incentive/features/incentives/data/incentives_repository.dart';
 import 'package:psm_incentive/features/incentives/presentation/history/widgets/widgets.dart';
 import 'package:psm_incentive/features/incentives/presentation/history/bloc/incentive_history_bloc.dart';
+import 'package:psm_incentive/features/incentives/presentation/pages/home_page/widgets/widgets.dart';
 import 'package:psm_incentive/features/incentives/presentation/incentive/bloc/incentive_bloc.dart';
 import 'package:psm_incentive/features/incentives/presentation/incentive/widgets/widgets.dart';
 import 'package:psm_incentive/utils/extensions/build_context_x.dart';
@@ -14,18 +17,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final IncentivesRepository repository = IncentivesRepository();
+    final FilterRepository filterRepository = FilterRepository();
 
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => IncentiveHistoryBloc(
-            repository: repository,
-          )..add(IncentiveHistoryGetRecentData()),
+          create: (context) => IncentiveHistoryBloc(repository: repository)
+            ..add(IncentiveHistoryGetRecentData()),
         ),
         BlocProvider(
           create: (context) => IncentiveBloc(repository: repository)
             ..add(IncentiveGetAmountData()),
         ),
+        BlocProvider(
+          create: (context) => PeriodPickerBloc(repository: filterRepository)
+            ..add(PeriodPickerGetPeriodList()),
+        )
       ],
       child: const HomePageView(),
     );
@@ -56,12 +63,14 @@ class HomePageView extends StatelessWidget {
           context
               .read<IncentiveHistoryBloc>()
               .add(IncentiveHistoryGetRecentData());
+          context.read<PeriodPickerBloc>().add(PeriodPickerGetPeriodList());
         },
         child: const SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              HomeFilter(),
               IncentiveAmount(),
               Divider(),
               RecentHistorySection(),
