@@ -10,13 +10,16 @@ class ApiClient {
   late Dio dio;
 
   ApiClient() {
-    log('ApiClient => ${Supabase.instance.client.auth.currentSession?.accessToken}');
+    final accessToken =
+        Supabase.instance.client.auth.currentSession?.accessToken;
+
+    log('ApiClient => $accessToken');
+
     dio = Dio(
       BaseOptions(
         baseUrl: AppEnv.apiBaseUrl,
         headers: {
-          'Authorization':
-              'Bearer ${Supabase.instance.client.auth.currentSession?.accessToken}',
+          'Authorization': 'Bearer $accessToken',
           'Accept': ContentType.json,
         },
       ),
