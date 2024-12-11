@@ -6,4 +6,6 @@ extension BuildContextX on BuildContext {
   AppLocalizations get strings => AppLocalizations.of(this)!;
 
   CustomColors? get customColor => Theme.of(this).extension<CustomColors>();
+
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
 }

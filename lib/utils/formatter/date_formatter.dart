@@ -43,4 +43,16 @@ class DateFormatter {
 
     return formatter.format(DateTime(0, month));
   }
+
+  static String getShortMonthName(int month) {
+    final DateFormat formatter = DateFormat('MMM');
+
+    return formatter.format(DateTime(0, month));
+  }
+
+  static String getCustomDateFormat(String format, DateTime date) {
+    final DateFormat formatter = DateFormat(format);
+
+    return formatter.format(date);
+  }
 }
