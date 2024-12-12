@@ -9,8 +9,8 @@ import 'package:psm_incentive/utils/constants.dart';
 import 'package:psm_incentive/utils/formatter/number_formatter.dart';
 import 'package:shimmer/shimmer.dart';
 
-class IncentiveAmount extends StatelessWidget {
-  const IncentiveAmount({
+class amount extends StatelessWidget {
+  const amount({
     super.key,
   });
 
@@ -60,10 +60,9 @@ class IncentiveAmount extends StatelessWidget {
                           return Flexible(
                             child: Text(
                               // TODO: Change to use data from API
-                              state.incentiveAmount == 0
+                              state.amount == 0
                                   ? '0,00'
-                                  : NumberFormatter.formatNumber(
-                                      state.incentiveAmount),
+                                  : NumberFormatter.formatNumber(state.amount),
                               style: GoogleFonts.inter(fontSize: 48),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 2,

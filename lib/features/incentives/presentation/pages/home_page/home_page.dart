@@ -71,7 +71,7 @@ class HomePageView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HomeFilter(),
-              IncentiveAmount(),
+              amount(),
               Divider(),
               RecentHistorySection(),
             ],

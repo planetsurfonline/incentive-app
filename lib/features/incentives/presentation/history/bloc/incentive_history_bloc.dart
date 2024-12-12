@@ -27,7 +27,7 @@ class IncentiveHistoryBloc
     try {
       emit(state.copyWith(status: Status.loading));
 
-      final List<HistoryItem> items = await _repository.getRecentHistory();
+      final List<Incentive> items = await _repository.getRecentHistory();
 
       emit(state.copyWith(
         status: Status.success,
