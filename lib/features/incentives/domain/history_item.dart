@@ -1,40 +1,40 @@
 import 'dart:convert';
 
-class HistoryItem {
+class Incentive {
   final String invoiceNumber;
   final DateTime invoiceDate;
-  final double incentiveAmount;
+  final double amount;
 
-  HistoryItem({
+  Incentive({
     required this.invoiceNumber,
     required this.invoiceDate,
-    required this.incentiveAmount,
+    required this.amount,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'invoiceNumber': invoiceNumber,
       'invoiceDate': invoiceDate.millisecondsSinceEpoch,
-      'incentiveAmount': incentiveAmount,
+      'amount': amount,
     };
   }
 
-  factory HistoryItem.fromMap(Map<String, dynamic> map) {
+  factory Incentive.fromMap(Map<String, dynamic> map) {
     // TODO: Change key to API
-    return HistoryItem(
+    return Incentive(
       invoiceNumber: (map["invoiceNumber"] ?? '') as String,
       invoiceDate:
           DateTime.fromMillisecondsSinceEpoch((map["invoiceDate"] ?? 0) as int),
-      incentiveAmount: (map["incentiveAmount"] ?? 0.0) as double,
+      amount: (map["amount"] ?? 0.0) as double,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory HistoryItem.fromJson(String source) =>
-      HistoryItem.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Incentive.fromJson(String source) =>
+      Incentive.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() =>
-      'HistoryItem(invoiceNumber: $invoiceNumber, invoiceDate: $invoiceDate, incentiveAmount: $incentiveAmount)';
+      'Incentive(invoiceNumber: $invoiceNumber, invoiceDate: $invoiceDate, amount: $amount)';
 }

@@ -8,13 +8,13 @@ import 'package:psm_incentive/utils/formatter/number_formatter.dart';
 class IncentiveHistoryItem extends StatelessWidget {
   final String invoiceNumber;
   final DateTime invoiceDate;
-  final double incentiveAmount;
+  final double amount;
 
   const IncentiveHistoryItem({
     super.key,
     required this.invoiceNumber,
     required this.invoiceDate,
-    required this.incentiveAmount,
+    required this.amount,
   });
 
   @override
@@ -56,7 +56,7 @@ class IncentiveHistoryItem extends StatelessWidget {
                       builder: (context, settingState) {
                         return Text(
                           // TODO: Chage to use data from API
-                          '+ Rp ${settingState.showNominal ? NumberFormatter.formatNumber(incentiveAmount) : '******'}',
+                          '+ Rp ${settingState.showNominal ? NumberFormatter.formatNumber(amount) : '******'}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium

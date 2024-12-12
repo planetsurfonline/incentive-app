@@ -7,7 +7,7 @@ class IncentivesRepository {
   final IncentivesProvider _provider = IncentivesProvider();
   final IncentiveHistoryProvider _historyProvider = IncentiveHistoryProvider();
 
-  Future<List<HistoryItem>> getRecentHistory() async {
+  Future<List<Incentive>> getRecentHistory() async {
     try {
       final result = await _historyProvider.getRecentHistoryData();
 
@@ -27,7 +27,7 @@ class IncentivesRepository {
 
       // TODO: Convert result to List of History Item
 
-      return Dummy.incentiveAmount;
+      return Dummy.amount;
 
       // return result;
     } catch (e) {

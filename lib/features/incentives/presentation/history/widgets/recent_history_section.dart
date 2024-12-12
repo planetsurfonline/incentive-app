@@ -69,7 +69,7 @@ class RecentHistorySection extends StatelessWidget {
                     (history) => IncentiveHistoryItem(
                         invoiceNumber: history.invoiceNumber,
                         invoiceDate: history.invoiceDate,
-                        incentiveAmount: history.incentiveAmount),
+                        amount: history.amount),
                   ),
                   if (state.recentHistories.isNotEmpty)
                     Center(

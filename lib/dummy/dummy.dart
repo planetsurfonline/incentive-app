@@ -5,16 +5,16 @@ import 'package:psm_incentive/features/incentives/domain/history_item.dart';
 import 'package:psm_incentive/features/incentives/domain/models.dart';
 
 class Dummy {
-  static List<HistoryItem> getHistoryItem({int itemCount = 5}) {
-    final List<HistoryItem> result = [];
+  static List<Incentive> getHistoryItem({int itemCount = 5}) {
+    final List<Incentive> result = [];
     final Random random = Random();
 
     for (int i = 0; i < itemCount; i++) {
       final randomInvoiceAndIncentive = random.nextDouble() * 10000;
-      final temp = HistoryItem(
+      final temp = Incentive(
         invoiceNumber: 'INV #$randomInvoiceAndIncentive',
         invoiceDate: DateTime.now(),
-        incentiveAmount: randomInvoiceAndIncentive,
+        amount: randomInvoiceAndIncentive,
       );
 
       result.add(temp);
@@ -23,13 +23,13 @@ class Dummy {
     return result;
   }
 
-  static double get incentiveAmount {
+  static double get amount {
     final histories = getHistoryItem();
 
     double amount = 0;
 
     for (var history in histories) {
-      amount += history.incentiveAmount;
+      amount += history.amount;
     }
 
     return amount;

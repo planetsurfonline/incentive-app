@@ -29,7 +29,7 @@ class IncentiveBloc extends Bloc<IncentiveEvent, IncentiveState> {
 
       emit(state.copyWith(
         status: Status.success,
-        incentiveAmount: items,
+        amount: items,
       ));
     } catch (e) {
       log('IncentiveBloc _onIncentiveGetAmountData => ${e.toString()}');
