@@ -1,30 +1,53 @@
 import 'dart:math';
+import 'dart:developer' as dev;
 
 import 'package:psm_incentive/features/filter/domain/models.dart';
-import 'package:psm_incentive/features/incentives/domain/history_item.dart';
+import 'package:psm_incentive/features/incentives/domain/incentive.dart';
 import 'package:psm_incentive/features/incentives/domain/models.dart';
 
 class Dummy {
-  static List<Incentive> getHistoryItem({int itemCount = 5}) {
+  static List<Incentive> getIncentiveRecords({int itemCount = 5}) {
     final List<Incentive> result = [];
     final Random random = Random();
 
+    final now = DateTime.now();
+
+    final randomInvoiceAndIncentive = random.nextDouble() * 10000;
+    final todaysRecord = Incentive(
+      invoiceNumber: 'INV #$randomInvoiceAndIncentive',
+      invoiceDate: now,
+      amount: randomInvoiceAndIncentive,
+    );
+
+    result.add(todaysRecord);
+
     for (int i = 0; i < itemCount; i++) {
       final randomInvoiceAndIncentive = random.nextDouble() * 10000;
+      final randomDate = random.nextInt(28);
+      final randomMonth = random.nextInt(12);
+      final randomDateTime = DateTime(now.year, randomMonth, randomDate);
+
+      if (randomDateTime.month == now.month && randomDateTime.day == now.day) {
+        i--;
+        continue;
+      }
+
       final temp = Incentive(
         invoiceNumber: 'INV #$randomInvoiceAndIncentive',
-        invoiceDate: DateTime.now(),
+        invoiceDate: randomDateTime,
         amount: randomInvoiceAndIncentive,
       );
 
       result.add(temp);
     }
 
+    result.sort((a, b) => a.invoiceDate.isBefore(b.invoiceDate) ? 1 : -1);
+
     return result;
   }
 
   static double get amount {
-    final histories = getHistoryItem();
+    final histories = getIncentiveRecords();
 
     double amount = 0;
 
