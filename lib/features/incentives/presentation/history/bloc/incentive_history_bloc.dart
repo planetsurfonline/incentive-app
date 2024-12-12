@@ -18,6 +18,8 @@ class IncentiveHistoryBloc
   })  : _repository = repository,
         super(const IncentiveHistoryState()) {
     on<IncentiveHistoryGetRecentData>(_onIncentiveHistoryGetRecentData);
+
+    on<IncentiveHistoryGetHistoryData>(_onIncentiveHistoryGetHistoryData);
   }
 
   Future<void> _onIncentiveHistoryGetRecentData(
@@ -35,6 +37,29 @@ class IncentiveHistoryBloc
       ));
     } catch (e) {
       log('IncentiveHistoryBloc _onIncentiveHistoryGetRecentData => ${e.toString()}');
+
+      emit(state.copyWith(
+        status: Status.error,
+        message: 'Cannot load data. Please try again',
+      ));
+    }
+  }
+
+  Future<void> _onIncentiveHistoryGetHistoryData(
+    _,
+    Emitter<IncentiveHistoryState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(status: Status.loading));
+
+      final List<Incentive> items = await _repository.getAllIncentiveHistory();
+
+      emit(state.copyWith(
+        status: Status.success,
+        allHistories: items,
+      ));
+    } catch (e) {
+      log('IncentiveHistoryBloc _onIncentiveHistoryGetHistoryData => ${e.toString()}');
 
       emit(state.copyWith(
         status: Status.error,
