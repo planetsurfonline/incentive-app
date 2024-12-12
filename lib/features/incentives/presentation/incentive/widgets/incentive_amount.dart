@@ -9,8 +9,8 @@ import 'package:psm_incentive/utils/constants.dart';
 import 'package:psm_incentive/utils/formatter/number_formatter.dart';
 import 'package:shimmer/shimmer.dart';
 
-class amount extends StatelessWidget {
-  const amount({
+class IncentiveAmount extends StatelessWidget {
+  const IncentiveAmount({
     super.key,
   });
 
