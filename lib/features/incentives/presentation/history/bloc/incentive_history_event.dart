@@ -8,3 +8,5 @@ sealed class IncentiveHistoryEvent extends Equatable {
 }
 
 final class IncentiveHistoryGetRecentData extends IncentiveHistoryEvent {}
+
+final class IncentiveHistoryGetHistoryData extends IncentiveHistoryEvent {}

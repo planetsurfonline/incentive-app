@@ -13,7 +13,21 @@ class IncentivesRepository {
 
       // TODO: Convert result to List of History Item
       // return [];
-      return Dummy.getHistoryItem();
+      return Dummy.getIncentiveRecords();
+
+      // return result;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Incentive>> getAllIncentiveHistory() async {
+    try {
+      final result = await _historyProvider.getRecentHistoryData();
+
+      // TODO: Convert result to List of History Item
+      // return [];
+      return Dummy.getIncentiveRecords(itemCount: 10);
 
       // return result;
     } catch (e) {
