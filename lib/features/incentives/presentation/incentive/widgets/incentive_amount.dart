@@ -5,6 +5,7 @@ import 'package:psm_incentive/features/app/presentation/theme_bloc/theme_bloc.da
 import 'package:psm_incentive/features/incentives/presentation/incentive/bloc/incentive_bloc.dart';
 import 'package:psm_incentive/shared/enum/status.dart';
 import 'package:psm_incentive/shared/widgets/shimmer_placeholders.dart';
+import 'package:psm_incentive/shared/widgets/widgets.dart';
 import 'package:psm_incentive/utils/constants.dart';
 import 'package:psm_incentive/utils/formatter/number_formatter.dart';
 import 'package:shimmer/shimmer.dart';
@@ -71,20 +72,7 @@ class IncentiveAmount extends StatelessWidget {
                           );
                         },
                       ),
-                      BlocBuilder<ThemeBloc, ThemeState>(
-                        builder: (context, state) {
-                          return IconButton(
-                            onPressed: () {
-                              context
-                                  .read<ThemeBloc>()
-                                  .add(SettingToggleNominalVisibility());
-                            },
-                            icon: Icon(state.showNominal
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined),
-                          );
-                        },
-                      ),
+                      const IncentiveVisibilityToggle()
                     ],
                   ),
                 );

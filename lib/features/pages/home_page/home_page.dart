@@ -5,7 +5,7 @@ import 'package:psm_incentive/features/filter/presentation/period_picker/bloc/pe
 import 'package:psm_incentive/features/incentives/data/incentives_repository.dart';
 import 'package:psm_incentive/features/incentives/presentation/history/widgets/widgets.dart';
 import 'package:psm_incentive/features/incentives/presentation/history/bloc/incentive_history_bloc.dart';
-import 'package:psm_incentive/features/incentives/presentation/pages/home_page/widgets/widgets.dart';
+import 'package:psm_incentive/features/pages/home_page/widgets/widgets.dart';
 import 'package:psm_incentive/features/incentives/presentation/incentive/bloc/incentive_bloc.dart';
 import 'package:psm_incentive/features/incentives/presentation/incentive/widgets/widgets.dart';
 import 'package:psm_incentive/utils/extensions/build_context_x.dart';

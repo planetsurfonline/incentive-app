@@ -5,12 +5,14 @@ final class IncentiveHistoryState extends Equatable {
   final String message;
   final List<Incentive> recentHistories;
   final List<Incentive> allHistories;
+  final List<Incentive> displayedHistories;
 
   const IncentiveHistoryState({
     this.status = Status.loading,
     this.message = '',
     this.recentHistories = const [],
     this.allHistories = const [],
+    this.displayedHistories = const [],
   });
 
   IncentiveHistoryState copyWith({
@@ -18,12 +20,14 @@ final class IncentiveHistoryState extends Equatable {
     String? message,
     List<Incentive>? recentHistories,
     List<Incentive>? allHistories,
+    List<Incentive>? displayedHistories,
   }) {
     return IncentiveHistoryState(
       status: status ?? this.status,
       message: message ?? this.message,
       recentHistories: recentHistories ?? this.recentHistories,
       allHistories: allHistories ?? this.allHistories,
+      displayedHistories: displayedHistories ?? this.displayedHistories,
     );
   }
 
@@ -33,5 +37,6 @@ final class IncentiveHistoryState extends Equatable {
         message,
         recentHistories,
         allHistories,
+        displayedHistories,
       ];
 }

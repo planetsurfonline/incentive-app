@@ -9,7 +9,9 @@ import 'package:psm_incentive/utils/extensions/build_context_x.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HistoryList extends StatelessWidget {
-  const HistoryList({super.key});
+  const HistoryList({super.key, this.scrollController});
+
+  final ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class HistoryList extends StatelessWidget {
       child: BlocBuilder<IncentiveHistoryBloc, IncentiveHistoryState>(
         builder: (context, state) {
           if (state.status == Status.loading) {
+            showPreviousLabel = true;
             return const _IncentiveHistoryLoading();
           }
 
@@ -50,28 +53,35 @@ class HistoryList extends StatelessWidget {
             );
           }
 
+          final displayedHistories = state.displayedHistories;
+
           return ListView.builder(
-            itemCount: state.allHistories.length,
+            controller: scrollController,
+            itemCount: state.displayedHistories.length,
             itemBuilder: (context, index) {
               if (index == 0) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: mediumSmallPadding,
+                      padding: const EdgeInsets.only(
+                        top: 64,
+                        bottom: mediumSmallPadding,
                       ),
                       child: Text(
-                        'Today',
+                        state.displayedHistories.length ==
+                                state.allHistories.length
+                            ? 'Today'
+                            : 'Result',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: const Color(0xFF868E96)),
                       ),
                     ),
                     IncentiveHistoryItem(
-                      invoiceNumber: state.allHistories[index].invoiceNumber,
-                      invoiceDate: state.allHistories[index].invoiceDate,
-                      amount: state.allHistories[index].amount,
+                      invoiceNumber: displayedHistories[index].invoiceNumber,
+                      invoiceDate: displayedHistories[index].invoiceDate,
+                      amount: displayedHistories[index].amount,
                     ),
                   ],
                 );
@@ -95,9 +105,9 @@ class HistoryList extends StatelessWidget {
                       ),
                     ),
                     IncentiveHistoryItem(
-                      invoiceNumber: state.allHistories[index].invoiceNumber,
-                      invoiceDate: state.allHistories[index].invoiceDate,
-                      amount: state.allHistories[index].amount,
+                      invoiceNumber: displayedHistories[index].invoiceNumber,
+                      invoiceDate: displayedHistories[index].invoiceDate,
+                      amount: displayedHistories[index].amount,
                     ),
                   ],
                 );
@@ -105,43 +115,43 @@ class HistoryList extends StatelessWidget {
                 showPreviousLabel = false;
               } else {
                 child = IncentiveHistoryItem(
-                  invoiceNumber: state.allHistories[index].invoiceNumber,
-                  invoiceDate: state.allHistories[index].invoiceDate,
-                  amount: state.allHistories[index].amount,
+                  invoiceNumber: displayedHistories[index].invoiceNumber,
+                  invoiceDate: displayedHistories[index].invoiceDate,
+                  amount: displayedHistories[index].amount,
                 );
               }
 
               return child;
-
-              // Simpen dlu
-              // if (state.allHistories[index].invoiceDate != DateTimeX.today) {
-              //   return Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Padding(
-              //         padding: const EdgeInsets.symmetric(
-              //           vertical: mediumSmallPadding,
-              //         ),
-              //         child: Text(
-              //           DateFormatter.getDate(
-              //               state.allHistories[index].invoiceDate),
-              //           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              //               fontWeight: FontWeight.w600,
-              //               color: const Color(0xFF868E96)),
-              //         ),
-              //       ),
-              //       IncentiveHistoryItem(
-              //         invoiceNumber: state.allHistories[index].invoiceNumber,
-              //         invoiceDate: state.allHistories[index].invoiceDate,
-              //         amount: state.allHistories[index].amount,
-              //       ),
-              //     ],
-              //   );
-              // }
-
-              // return null;
             },
           );
+
+          // Seperated by each date
+          // if (state.allHistories[index].invoiceDate != DateTimeX.today) {
+          //   return Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Padding(
+          //         padding: const EdgeInsets.symmetric(
+          //           vertical: mediumSmallPadding,
+          //         ),
+          //         child: Text(
+          //           DateFormatter.getDate(
+          //               state.allHistories[index].invoiceDate),
+          //           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          //               fontWeight: FontWeight.w600,
+          //               color: const Color(0xFF868E96)),
+          //         ),
+          //       ),
+          //       IncentiveHistoryItem(
+          //         invoiceNumber: state.allHistories[index].invoiceNumber,
+          //         invoiceDate: state.allHistories[index].invoiceDate,
+          //         amount: state.allHistories[index].amount,
+          //       ),
+          //     ],
+          //   );
+          // }
+
+          // return null;
         },
       ),
     );
