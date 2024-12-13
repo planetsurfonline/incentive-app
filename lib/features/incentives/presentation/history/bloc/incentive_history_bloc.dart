@@ -20,6 +20,8 @@ class IncentiveHistoryBloc
     on<IncentiveHistoryGetRecentData>(_onIncentiveHistoryGetRecentData);
 
     on<IncentiveHistoryGetHistoryData>(_onIncentiveHistoryGetHistoryData);
+
+    on<IncentiveHistoryFilterDisplay>(_onIncentiveHistoryFilterDisplay);
   }
 
   Future<void> _onIncentiveHistoryGetRecentData(
@@ -57,6 +59,7 @@ class IncentiveHistoryBloc
       emit(state.copyWith(
         status: Status.success,
         allHistories: items,
+        displayedHistories: items,
       ));
     } catch (e) {
       log('IncentiveHistoryBloc _onIncentiveHistoryGetHistoryData => ${e.toString()}');
@@ -66,5 +69,16 @@ class IncentiveHistoryBloc
         message: 'Cannot load data. Please try again',
       ));
     }
+  }
+
+  void _onIncentiveHistoryFilterDisplay(
+    IncentiveHistoryFilterDisplay event,
+    Emitter<IncentiveHistoryState> emit,
+  ) {
+    final displayedHistories = state.allHistories
+        .where((history) => history.invoiceNumber.contains(event.searchQuery))
+        .toList();
+
+    emit(state.copyWith(displayedHistories: displayedHistories));
   }
 }

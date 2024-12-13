@@ -10,3 +10,12 @@ sealed class IncentiveHistoryEvent extends Equatable {
 final class IncentiveHistoryGetRecentData extends IncentiveHistoryEvent {}
 
 final class IncentiveHistoryGetHistoryData extends IncentiveHistoryEvent {}
+
+final class IncentiveHistoryFilterDisplay extends IncentiveHistoryEvent {
+  final String searchQuery;
+
+  const IncentiveHistoryFilterDisplay({required this.searchQuery});
+
+  @override
+  List<Object> get props => [searchQuery];
+}

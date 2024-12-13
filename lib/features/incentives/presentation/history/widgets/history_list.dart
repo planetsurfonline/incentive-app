@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:psm_incentive/features/incentives/presentation/history/bloc/incentive_history_bloc.dart';
 import 'package:psm_incentive/features/incentives/presentation/shared/widgets/widgets.dart';
+import 'package:psm_incentive/features/search/custom_search_bar.dart';
 import 'package:psm_incentive/shared/enum/status.dart';
 import 'package:psm_incentive/shared/widgets/widgets.dart';
 import 'package:psm_incentive/utils/constants.dart';
@@ -50,98 +51,130 @@ class HistoryList extends StatelessWidget {
             );
           }
 
-          return ListView.builder(
-            itemCount: state.allHistories.length,
-            itemBuilder: (context, index) {
-              if (index == 0) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: mediumSmallPadding,
-                      ),
-                      child: Text(
-                        'Today',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF868E96)),
-                      ),
-                    ),
-                    IncentiveHistoryItem(
-                      invoiceNumber: state.allHistories[index].invoiceNumber,
-                      invoiceDate: state.allHistories[index].invoiceDate,
-                      amount: state.allHistories[index].amount,
-                    ),
-                  ],
-                );
-              }
+          final displayedHistories = state.displayedHistories;
 
-              Widget child;
+          // TODO: Please find better implementation
+          return CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                floating: true,
+                snap: true,
+                pinned: false,
+                flexibleSpace: CustomSearchBar(
+                  icon: const Icon(Icons.search),
+                  hintText: 'Search',
+                  onChanged: (text) {
+                    context
+                        .read<IncentiveHistoryBloc>()
+                        .add(IncentiveHistoryFilterDisplay(searchQuery: text));
+                  },
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    if (index == 0) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: mediumSmallPadding,
+                            ),
+                            child: Text(
+                              'Today',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: const Color(0xFF868E96)),
+                            ),
+                          ),
+                          IncentiveHistoryItem(
+                            invoiceNumber:
+                                displayedHistories[index].invoiceNumber,
+                            invoiceDate: displayedHistories[index].invoiceDate,
+                            amount: displayedHistories[index].amount,
+                          ),
+                        ],
+                      );
+                    }
 
-              if (showPreviousLabel) {
-                child = Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: mediumSmallPadding,
-                      ),
-                      child: Text(
-                        'Previously',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF868E96)),
-                      ),
-                    ),
-                    IncentiveHistoryItem(
-                      invoiceNumber: state.allHistories[index].invoiceNumber,
-                      invoiceDate: state.allHistories[index].invoiceDate,
-                      amount: state.allHistories[index].amount,
-                    ),
-                  ],
-                );
+                    Widget child;
 
-                showPreviousLabel = false;
-              } else {
-                child = IncentiveHistoryItem(
-                  invoiceNumber: state.allHistories[index].invoiceNumber,
-                  invoiceDate: state.allHistories[index].invoiceDate,
-                  amount: state.allHistories[index].amount,
-                );
-              }
+                    if (showPreviousLabel) {
+                      child = Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: mediumSmallPadding,
+                            ),
+                            child: Text(
+                              'Previously',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                      color: const Color(0xFF868E96)),
+                            ),
+                          ),
+                          IncentiveHistoryItem(
+                            invoiceNumber:
+                                displayedHistories[index].invoiceNumber,
+                            invoiceDate: displayedHistories[index].invoiceDate,
+                            amount: displayedHistories[index].amount,
+                          ),
+                        ],
+                      );
 
-              return child;
+                      showPreviousLabel = false;
+                    } else {
+                      child = IncentiveHistoryItem(
+                        invoiceNumber: displayedHistories[index].invoiceNumber,
+                        invoiceDate: displayedHistories[index].invoiceDate,
+                        amount: displayedHistories[index].amount,
+                      );
+                    }
 
-              // Simpen dlu
-              // if (state.allHistories[index].invoiceDate != DateTimeX.today) {
-              //   return Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Padding(
-              //         padding: const EdgeInsets.symmetric(
-              //           vertical: mediumSmallPadding,
-              //         ),
-              //         child: Text(
-              //           DateFormatter.getDate(
-              //               state.allHistories[index].invoiceDate),
-              //           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              //               fontWeight: FontWeight.w600,
-              //               color: const Color(0xFF868E96)),
-              //         ),
-              //       ),
-              //       IncentiveHistoryItem(
-              //         invoiceNumber: state.allHistories[index].invoiceNumber,
-              //         invoiceDate: state.allHistories[index].invoiceDate,
-              //         amount: state.allHistories[index].amount,
-              //       ),
-              //     ],
-              //   );
-              // }
-
-              // return null;
-            },
+                    return child;
+                  },
+                  childCount: displayedHistories.length,
+                ),
+              ),
+            ],
           );
+
+          // Seperated by each date
+          // if (state.allHistories[index].invoiceDate != DateTimeX.today) {
+          //   return Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Padding(
+          //         padding: const EdgeInsets.symmetric(
+          //           vertical: mediumSmallPadding,
+          //         ),
+          //         child: Text(
+          //           DateFormatter.getDate(
+          //               state.allHistories[index].invoiceDate),
+          //           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+          //               fontWeight: FontWeight.w600,
+          //               color: const Color(0xFF868E96)),
+          //         ),
+          //       ),
+          //       IncentiveHistoryItem(
+          //         invoiceNumber: state.allHistories[index].invoiceNumber,
+          //         invoiceDate: state.allHistories[index].invoiceDate,
+          //         amount: state.allHistories[index].amount,
+          //       ),
+          //     ],
+          //   );
+          // }
+
+          // return null;
         },
       ),
     );
