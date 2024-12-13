@@ -22,6 +22,7 @@ class HistoryList extends StatelessWidget {
       child: BlocBuilder<IncentiveHistoryBloc, IncentiveHistoryState>(
         builder: (context, state) {
           if (state.status == Status.loading) {
+            showPreviousLabel = true;
             return const _IncentiveHistoryLoading();
           }
 
