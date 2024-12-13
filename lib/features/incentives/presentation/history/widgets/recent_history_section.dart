@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:psm_incentive/features/incentives/presentation/history/bloc/incentive_history_bloc.dart';
-import 'package:psm_incentive/features/incentives/presentation/pages/incentive_history/incentive_history_page.dart';
+import 'package:psm_incentive/features/pages/incentive_history/incentive_history_page.dart';
 import 'package:psm_incentive/features/incentives/presentation/shared/widgets/widgets.dart';
 import 'package:psm_incentive/shared/enum/status.dart';
 import 'package:psm_incentive/shared/widgets/widgets.dart';

@@ -8,7 +8,7 @@ import 'package:psm_incentive/features/app/presentation/app_loading.dart';
 import 'package:psm_incentive/features/app/presentation/bloc/app_bloc.dart';
 import 'package:psm_incentive/features/app/presentation/theme_bloc/theme_bloc.dart';
 import 'package:psm_incentive/features/authentication/authentication.dart';
-import 'package:psm_incentive/features/incentives/presentation/pages/home_page/home_page.dart';
+import 'package:psm_incentive/features/pages/home_page/home_page.dart';
 import 'package:psm_incentive/features/theme/app_theme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
