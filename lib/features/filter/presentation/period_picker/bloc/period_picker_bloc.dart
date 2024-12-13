@@ -35,16 +35,10 @@ class PeriodPickerBloc extends Bloc<PeriodPickerEvent, PeriodPickerState> {
   ) async {
     try {
       emit(state.copyWith(status: Status.loading));
-      log('PeriodPickerBloc _onPeriodPickerGetPeriodList');
 
       List<Period> periods = await _repository.getPeriodList();
 
-      log('periods.length = ${periods.length}');
-
       final displayedPeriods = periods.where((period) {
-        log('curent event ${period.name}');
-        log('is endDate.year == state.currentYear (${period.endDate.year} == ${state.currentYear})? ${period.endDate.year == state.currentYear}');
-
         return period.endDate.year == state.currentYear;
       }).toList();
 
