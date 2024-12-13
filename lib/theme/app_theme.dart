@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:psm_incentive/features/theme/custom_colors.dart';
+import 'package:psm_incentive/theme/custom_colors.dart';
 import 'package:psm_incentive/utils/constants.dart';
 
 ThemeData buildTheme() {
