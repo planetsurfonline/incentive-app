@@ -7,6 +7,7 @@ import 'package:psm_incentive/features/incentives/presentation/history/bloc/ince
 import 'package:psm_incentive/features/incentives/presentation/history/widgets/history_list.dart';
 import 'package:psm_incentive/features/search/custom_search_bar.dart';
 import 'package:psm_incentive/shared/enum/status.dart';
+import 'package:psm_incentive/shared/widgets/widgets.dart';
 import 'package:psm_incentive/utils/constants.dart';
 import 'package:psm_incentive/utils/extensions/build_context_x.dart';
 
@@ -89,6 +90,7 @@ class _IncentiveHistoryPageViewState extends State<IncentiveHistoryPageView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Incentive Logging'),
+        actions: const [IncentiveVisibilityToggle()],
       ),
       body: RefreshIndicator(
         onRefresh: () async {
