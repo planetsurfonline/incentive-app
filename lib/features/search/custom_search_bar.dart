@@ -15,6 +15,7 @@ class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTapOutside: (event) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
         prefixIcon: icon,
         hintText: hintText,
