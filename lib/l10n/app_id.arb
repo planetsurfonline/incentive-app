@@ -116,5 +116,25 @@
   "tryAgain": "Coba lagi",
   "@tryAgain": {
     "description": "Try again"
+  },
+  "seeAllLabel": "Lihat Semua",
+  "@seeAllLabel": {
+    "description": "See all label"
+  },
+  "sortLabel": "Urutan",
+  "@sortLabel": {
+    "description": "Sort label"
+  },
+  "jobRoleLabel": "Jabatan",
+  "@jobRoleLabel": {
+    "description": "Job role label"
+  },
+  "storeLabel": "Toko",
+  "@storeLabel": {
+    "description": "Store label"
+  },
+  "searchStoreLabel": "Cari Toko",
+  "@searchStoreLabel": {
+    "description": "Search store label"
   }
 }
