@@ -54,5 +54,9 @@
   "somethingWentWrongError": "Something went wrong",
   "pleaseTryAgain": "Please try again",
   "tryAgain": "Try again",
-  "refreshLabel": "Refresh"
+  "refreshLabel": "Refresh",
+  "seeAllLabel": "See All",
+  "sortLabel": "Sort",
+  "jobRoleLabel": "Job Role",
+  "searchStoreLabel": "Search Store"
 }

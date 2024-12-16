@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:psm_incentive/features/filter/data/filter_repository.dart';
+import 'package:psm_incentive/features/filter/presentation/filter_sheet/bloc/filter_bloc.dart';
+import 'package:psm_incentive/features/filter/presentation/filter_sheet/filter_sheet.dart';
 import 'package:psm_incentive/features/filter/presentation/period_picker/bloc/period_picker_bloc.dart';
 import 'package:psm_incentive/features/incentives/data/incentives_repository.dart';
 import 'package:psm_incentive/features/incentives/presentation/history/bloc/incentive_history_bloc.dart';
@@ -25,6 +27,9 @@ class IncentiveHistoryPage extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => FilterBloc(),
+        ),
         BlocProvider(
           create: (context) => IncentiveHistoryBloc(repository: repository)
             ..add(IncentiveHistoryGetHistoryData()),
@@ -113,13 +118,41 @@ class _IncentiveHistoryPageViewState extends State<IncentiveHistoryPageView> {
                   child: Container(
                     padding: const EdgeInsets.all(padding),
                     color: context.colorScheme.primaryContainer,
-                    child: CustomSearchBar(
-                      icon: const Icon(Icons.search),
-                      hintText: 'Search',
-                      onChanged: (text) {
-                        context.read<IncentiveHistoryBloc>().add(
-                            IncentiveHistoryFilterDisplay(searchQuery: text));
-                      },
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: CustomSearchBar(
+                            icon: const Icon(Icons.search),
+                            hintText: 'Search',
+                            onChanged: (text) {
+                              context
+                                  .read<IncentiveHistoryBloc>()
+                                  .add(IncentiveHistoryFilterDisplay(
+                                    searchQuery: text,
+                                  ));
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: mediumSmallPadding),
+                        FilterButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (_) {
+                                return BlocProvider.value(
+                                  value: BlocProvider.of<FilterBloc>(context),
+                                  child: FilterSheet(
+                                    onResetFilter: () {
+                                      // TODO: Reset filter
+                                    },
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        )
+                      ],
                     ),
                   ),
                 );

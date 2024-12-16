@@ -27,6 +27,8 @@ class PeriodPickerBloc extends Bloc<PeriodPickerEvent, PeriodPickerState> {
 
     on<PeriodPickerChangeStartDate>(_onPeriodPickerChangeStartDate);
     on<PeriodPickerChangeEndDate>(_onPeriodPickerChangeEndDate);
+
+    on<PeriodPickerUpdateOption>(_onPeriodPickerUpdateOption);
   }
 
   Future<void> _onPeriodPickerGetPeriodList(
@@ -42,15 +44,37 @@ class PeriodPickerBloc extends Bloc<PeriodPickerEvent, PeriodPickerState> {
         return period.endDate.year == state.currentYear;
       }).toList();
 
+      final optionedPeriods = displayedPeriods
+          .getRange(
+            0,
+            displayedPeriods.length > 3 ? 3 : displayedPeriods.length,
+          )
+          .toList();
+
       emit(state.copyWith(
         status: Status.success,
         periods: periods,
         displayedPeriods: displayedPeriods,
+        optionedPeriods: optionedPeriods,
       ));
     } catch (e) {
       log('PeriodPickerBloc _onPeriodPickerGetPeriodList => ${e.toString()}');
 
       emit(state.copyWith(status: Status.error));
+    }
+  }
+
+  void _onPeriodPickerUpdateOption(
+    PeriodPickerUpdateOption event,
+    Emitter<PeriodPickerState> emit,
+  ) {
+    final currentOptions = state.optionedPeriods;
+
+    if (!currentOptions.contains(event.selectedPeriod)) {
+      currentOptions.add(event.selectedPeriod);
+      emit(state.copyWith(
+        optionedPeriods: currentOptions,
+      ));
     }
   }
 
