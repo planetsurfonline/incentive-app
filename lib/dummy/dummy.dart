@@ -1,9 +1,9 @@
 import 'dart:math';
-import 'dart:developer' as dev;
 
 import 'package:psm_incentive/features/filter/domain/models.dart';
 import 'package:psm_incentive/features/incentives/domain/incentive.dart';
 import 'package:psm_incentive/features/incentives/domain/models.dart';
+import 'package:psm_incentive/features/store/domain/models.dart';
 
 class Dummy {
   static List<Incentive> getIncentiveRecords({int itemCount = 5}) {
@@ -94,5 +94,24 @@ class Dummy {
       startDate: DateTime(2023, 3, 1, 0, 0, 0),
       endDate: DateTime(2023, 3, 31, 23, 59, 59),
     ),
+  ];
+
+  static List<Store> storeList = [
+    const Store(storeName: 'PS ACEH', storeUuid: 'PSACEH'),
+    const Store(storeName: 'PS ACEH2', storeUuid: 'PSACEH'),
+    const Store(storeName: 'PS ADIYAKSA', storeUuid: 'PSADIYAKSA'),
+    const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+    const Store(storeName: 'PS AMBON', storeUuid: 'PSAMBON'),
+    const Store(storeName: 'PS TERNATE', storeUuid: 'PSTERNATE'),
+    const Store(storeName: 'PS JAKARTA', storeUuid: 'PSJAKARTA'),
+    const Store(storeName: 'PS TANGERANG', storeUuid: 'PSTANGERANG'),
+    const Store(storeName: 'PS BALI', storeUuid: 'PSBALI'),
+    const Store(storeName: 'PS BALI2', storeUuid: 'PSBALI2'),
+    const Store(storeName: 'PS BALI3', storeUuid: 'PSBALI3'),
+    const Store(storeName: 'PS KUTA', storeUuid: 'PSKUTA'),
+    const Store(storeName: 'PS PEKANBARU', storeUuid: 'PSPEKANBARU'),
+    const Store(storeName: 'PS SINGKAWANG', storeUuid: 'PSSINGKAWANG'),
+    const Store(storeName: 'PS BANJARMASIN', storeUuid: 'PSBANJARMASIN'),
+    const Store(storeName: 'PS BANDUNG', storeUuid: 'PSBANDUNG'),
   ];
 }
