@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:psm_incentive/features/filter/data/filter_repository.dart';
 import 'package:psm_incentive/features/filter/domain/models.dart';
 import 'package:psm_incentive/shared/enum/status.dart';
+import 'package:psm_incentive/utils/extensions/build_context_x.dart';
 import 'package:psm_incentive/utils/formatter/date_formatter.dart';
 
 part 'period_picker_event.dart';
@@ -12,8 +14,10 @@ part 'period_picker_state.dart';
 
 class PeriodPickerBloc extends Bloc<PeriodPickerEvent, PeriodPickerState> {
   final FilterRepository _repository;
+  final BuildContext context;
 
-  PeriodPickerBloc({required FilterRepository repository})
+  PeriodPickerBloc(
+      {required this.context, required FilterRepository repository})
       : _repository = repository,
         super(PeriodPickerState()) {
     on<PeriodPickerPopulatePeriodList>(_onPeriodPickerPopulatePeriodList);
@@ -149,7 +153,7 @@ class PeriodPickerBloc extends Bloc<PeriodPickerEvent, PeriodPickerState> {
   ) {
     String periodName = DateTime.now().difference(event.startDate) <
             const Duration(days: 1)
-        ? 'Today'
+        ? context.strings.todayLabel
         : '${event.startDate.day} ${DateFormatter.getMonthName(event.startDate.month)} ${event.startDate.year}';
 
     Period newPeriod = Period(

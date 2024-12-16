@@ -14,14 +14,16 @@ class PeriodFilterSheet extends StatefulWidget {
 
 class _PeriodFilterSheetState extends State<PeriodFilterSheet>
     with TickerProviderStateMixin {
-  final List<Tab> _tabs = [
-    const Tab(text: 'Period'),
-    const Tab(text: 'Month'),
-    const Tab(text: 'Custom'),
-  ];
+  late List<Tab> _tabs;
 
   @override
   Widget build(BuildContext context) {
+    _tabs = [
+      Tab(text: context.strings.periodLabel),
+      Tab(text: context.strings.monthLabel),
+      Tab(text: context.strings.customLabel),
+    ];
+
     final TabController controller =
         TabController(length: _tabs.length, vsync: this);
 

@@ -7,6 +7,7 @@ import 'package:psm_incentive/shared/enum/status.dart';
 import 'package:psm_incentive/shared/widgets/shimmer_placeholders.dart';
 import 'package:psm_incentive/shared/widgets/widgets.dart';
 import 'package:psm_incentive/utils/constants.dart';
+import 'package:psm_incentive/utils/extensions/build_context_x.dart';
 import 'package:psm_incentive/utils/formatter/number_formatter.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -26,7 +27,7 @@ class IncentiveAmount extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Your Incentives',
+              context.strings.yourIncentiveLabel,
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             BlocBuilder<IncentiveBloc, IncentiveState>(

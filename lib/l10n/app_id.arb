@@ -136,5 +136,53 @@
   "searchStoreLabel": "Cari Toko",
   "@searchStoreLabel": {
     "description": "Search store label"
+  },
+  "incentiveRecordLabel": "Rekor Insentif",
+  "@incentiveRecordLabel": {
+    "description": "Incentive record label"
+  },
+  "showAllLabel": "Semua",
+  "@showAllLabel": {
+    "description": "Show all label"
+  },
+  "recentHistoryLabel": "Insentif terbaru",
+  "@recentHistoryLabel": {
+    "description": "Recent history label"
+  },
+  "yourIncentiveLabel": "Insentif Anda",
+  "@yourIncentiveLabel": {
+    "description": "Your incentive label"
+  },
+  "todayLabel": "Hari Ini",
+  "@todayLabel": {
+    "description": "Today label"
+  },
+  "monthLabel": "Bulan",
+  "@monthLabel": {
+    "description": "Month label"
+  },
+  "customLabel": "Pilih Tanggal",
+  "@customLabel": {
+    "description": "Custom label"
+  },
+  "searchInvoiceLabel": "Cari nomor nota",
+  "@searchInvoiceLabel": {
+    "description": "Search invoice label"
+  },
+  "previouslyLabel": "Sebelumnya",
+  "@previouslyLabel": {
+    "description": "Previously label"
+  },
+  "highToLowLabel": "Tertinggi - Terendah",
+  "@highToLowLabel": {
+    "description": "High to low label"
+  },
+  "lowToHighLabel": "Terendah - Tertinggi",
+  "@lowToHighLabel": {
+    "description": "Low to high label"
+  },
+  "resultLabel": "Hasil",
+  "@resultLabel": {
+    "description": "Result label"
   }
 }

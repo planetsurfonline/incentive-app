@@ -67,7 +67,9 @@ class HomeFilter extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    state.currentPeriod.name,
+                    state.currentPeriod.name == 'Today'
+                        ? context.strings.todayLabel
+                        : state.currentPeriod.name,
                     maxLines: 1,
                     style: Theme.of(context)
                         .textTheme

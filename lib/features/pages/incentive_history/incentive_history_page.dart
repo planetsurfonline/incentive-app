@@ -35,8 +35,10 @@ class IncentiveHistoryPage extends StatelessWidget {
             ..add(IncentiveHistoryGetHistoryData()),
         ),
         BlocProvider(
-          create: (context) => PeriodPickerBloc(repository: filterRepository)
-            ..add(PeriodPickerGetPeriodList()),
+          create: (context) => PeriodPickerBloc(
+            context: context,
+            repository: filterRepository,
+          )..add(PeriodPickerGetPeriodList()),
         )
       ],
       child: const IncentiveHistoryPageView(),
@@ -94,7 +96,7 @@ class _IncentiveHistoryPageViewState extends State<IncentiveHistoryPageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Incentive Logging'),
+        title: Text(context.strings.incentiveRecordLabel),
         actions: const [IncentiveVisibilityToggle()],
       ),
       body: RefreshIndicator(
@@ -124,7 +126,7 @@ class _IncentiveHistoryPageViewState extends State<IncentiveHistoryPageView> {
                         Expanded(
                           child: CustomSearchBar(
                             icon: const Icon(Icons.search),
-                            hintText: 'Search',
+                            hintText: context.strings.searchInvoiceLabel,
                             onChanged: (text) {
                               context
                                   .read<IncentiveHistoryBloc>()

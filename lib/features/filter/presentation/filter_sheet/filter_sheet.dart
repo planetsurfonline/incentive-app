@@ -31,8 +31,10 @@ class FilterSheet extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => PeriodPickerBloc(repository: FilterRepository())
-            ..add(PeriodPickerGetPeriodList()),
+          create: (context) => PeriodPickerBloc(
+            context: context,
+            repository: FilterRepository(),
+          )..add(PeriodPickerGetPeriodList()),
         ),
         BlocProvider(
           create: (context) => StorePickerBloc(repository: StoreRepository())
