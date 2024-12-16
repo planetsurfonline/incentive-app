@@ -1,13 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:psm_incentive/features/filter/domain/models.dart';
 import 'package:psm_incentive/utils/formatter/date_formatter.dart';
 
-class Period {
+class Period implements Filter {
   final String name;
   final DateTime startDate;
   final DateTime endDate;
 
+  @override
   String get label {
     return '$name (${DateFormatter.getCustomDateFormat('dd MMM', startDate)} - ${DateFormatter.getCustomDateFormat('dd MMM yyyy', endDate)})';
   }
