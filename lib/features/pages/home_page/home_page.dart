@@ -30,8 +30,10 @@ class HomePage extends StatelessWidget {
             ..add(IncentiveGetAmountData()),
         ),
         BlocProvider(
-          create: (context) => PeriodPickerBloc(repository: filterRepository)
-            ..add(PeriodPickerGetPeriodList()),
+          create: (context) => PeriodPickerBloc(
+            context: context,
+            repository: filterRepository,
+          )..add(PeriodPickerGetPeriodList()),
         )
       ],
       child: const HomePageView(),

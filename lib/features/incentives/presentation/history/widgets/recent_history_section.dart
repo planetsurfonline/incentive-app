@@ -22,7 +22,7 @@ class RecentHistorySection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Recent History',
+            context.strings.recentHistoryLabel,
             style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: const Color(0xFF868E96),
@@ -78,9 +78,9 @@ class RecentHistorySection extends StatelessWidget {
                           Navigator.of(context)
                               .push(IncentiveHistoryPage.route());
                         },
-                        child: const Text(
-                          'Show All',
-                          style: TextStyle(
+                        child: Text(
+                          context.strings.showAllLabel,
+                          style: const TextStyle(
                             decoration: TextDecoration.underline,
                             fontWeight: FontWeight.bold,
                           ),

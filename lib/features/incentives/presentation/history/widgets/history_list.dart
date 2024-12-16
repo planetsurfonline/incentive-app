@@ -71,8 +71,8 @@ class HistoryList extends StatelessWidget {
                       child: Text(
                         state.displayedHistories.length ==
                                 state.allHistories.length
-                            ? 'Today'
-                            : 'Result',
+                            ? context.strings.todayLabel
+                            : context.strings.resultLabel,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: const Color(0xFF868E96)),
@@ -98,7 +98,7 @@ class HistoryList extends StatelessWidget {
                         vertical: mediumSmallPadding,
                       ),
                       child: Text(
-                        'Previously',
+                        context.strings.previouslyLabel,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: const Color(0xFF868E96)),
