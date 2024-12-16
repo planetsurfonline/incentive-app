@@ -5,6 +5,7 @@ enum PeriodTab { period, month, custom }
 class PeriodPickerState extends Equatable {
   final List<Period> periods;
   final List<Period> displayedPeriods;
+  final List<Period> optionedPeriods;
   final Period currentPeriod;
   final Period? selectedPeriod;
   final Status status;
@@ -18,6 +19,7 @@ class PeriodPickerState extends Equatable {
   PeriodPickerState({
     this.periods = const [],
     this.displayedPeriods = const [],
+    this.optionedPeriods = const [],
     Period? currentPeriod,
     this.selectedPeriod,
     this.status = Status.loading,
@@ -44,6 +46,7 @@ class PeriodPickerState extends Equatable {
   List<Object?> get props => [
         periods,
         displayedPeriods,
+        optionedPeriods,
         currentPeriod,
         selectedPeriod,
         status,
@@ -58,6 +61,7 @@ class PeriodPickerState extends Equatable {
   PeriodPickerState copyWith({
     List<Period>? periods,
     List<Period>? displayedPeriods,
+    List<Period>? optionedPeriods,
     Period? currentPeriod,
     Period? selectedPeriod,
     Status? status,
@@ -71,6 +75,7 @@ class PeriodPickerState extends Equatable {
     return PeriodPickerState(
       periods: periods ?? this.periods,
       displayedPeriods: displayedPeriods ?? this.displayedPeriods,
+      optionedPeriods: optionedPeriods ?? this.optionedPeriods,
       currentPeriod: currentPeriod ?? this.currentPeriod,
       selectedPeriod: selectedPeriod ?? this.selectedPeriod,
       status: status ?? this.status,

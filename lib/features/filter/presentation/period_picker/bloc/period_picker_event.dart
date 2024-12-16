@@ -63,4 +63,13 @@ final class PeriodPickerChangeEndDate extends PeriodPickerEvent {
   List<Object> get props => [endDate];
 }
 
+final class PeriodPickerUpdateOption extends PeriodPickerEvent {
+  final Period selectedPeriod;
+
+  const PeriodPickerUpdateOption({required this.selectedPeriod});
+
+  @override
+  List<Object> get props => [selectedPeriod];
+}
+
 final class PeriodPickerApplyFilter extends PeriodPickerEvent {}
