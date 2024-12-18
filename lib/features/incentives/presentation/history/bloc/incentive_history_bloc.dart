@@ -35,7 +35,8 @@ class IncentiveHistoryBloc
 
       emit(state.copyWith(
         status: Status.success,
-        recentHistories: items,
+        recentHistories:
+            items.getRange(0, items.length < 5 ? items.length : 5).toList(),
       ));
     } catch (e) {
       log('IncentiveHistoryBloc _onIncentiveHistoryGetRecentData => ${e.toString()}');
