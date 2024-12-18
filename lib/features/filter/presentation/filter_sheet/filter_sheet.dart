@@ -16,12 +16,9 @@ import 'widgets/filter_sections/period_filter_section.dart';
 class FilterSheet extends StatelessWidget {
   const FilterSheet({
     super.key,
-    required this.onResetFilter,
     this.showJobRoleSection = false,
     this.showStoreSection = false,
   });
-
-  final Function() onResetFilter;
 
   final bool showJobRoleSection;
   final bool showStoreSection;
@@ -42,7 +39,6 @@ class FilterSheet extends StatelessWidget {
         )
       ],
       child: FilterSheetView(
-        onResetFilter: onResetFilter,
         showJobRoleSection: showJobRoleSection,
         showStoreSection: showStoreSection,
       ),
@@ -53,12 +49,9 @@ class FilterSheet extends StatelessWidget {
 class FilterSheetView extends StatelessWidget {
   const FilterSheetView({
     super.key,
-    required this.onResetFilter,
     required this.showJobRoleSection,
     required this.showStoreSection,
   });
-
-  final Function() onResetFilter;
 
   final bool showJobRoleSection;
   final bool showStoreSection;
@@ -78,16 +71,15 @@ class FilterSheetView extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            _FilterHeader(
-              onResetFilter: onResetFilter,
-            ),
+            const _FilterHeader(),
             const PeriodFilterSection(),
             const SortFilterSection(),
             if (showJobRoleSection) const JobRoleFilterSection(),
             if (showStoreSection) const StoreFilterSection(),
             ApplyButton(
               onTap: () {
-                context.read<FilterBloc>().add(FilterApplyButtonPressed());
+                final state = context.read<FilterBloc>().state;
+                Navigator.of(context).pop(state);
               },
             )
           ],
@@ -98,11 +90,7 @@ class FilterSheetView extends StatelessWidget {
 }
 
 class _FilterHeader extends StatelessWidget {
-  const _FilterHeader({
-    required this.onResetFilter,
-  });
-
-  final Function() onResetFilter;
+  const _FilterHeader();
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +105,6 @@ class _FilterHeader extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                onResetFilter();
                 context.read<FilterBloc>().add(FilterResetButtonPressed());
               },
               child: Text(context.strings.resetFilterLabel),

@@ -138,20 +138,26 @@ class _IncentiveHistoryPageViewState extends State<IncentiveHistoryPageView> {
                         ),
                         const SizedBox(width: mediumSmallPadding),
                         FilterButton(
-                          onPressed: () {
-                            showModalBottomSheet(
+                          onPressed: () async {
+                            final result = await showModalBottomSheet(
                               context: context,
                               builder: (_) {
                                 return BlocProvider.value(
                                   value: BlocProvider.of<FilterBloc>(context),
-                                  child: FilterSheet(
-                                    onResetFilter: () {
-                                      // TODO: Reset filter
-                                    },
-                                  ),
+                                  child: const FilterSheet(),
                                 );
                               },
-                            );
+                            ) as FilterState?;
+
+                            if (result != null) {
+                              if (context.mounted) {
+                                context
+                                    .read<IncentiveHistoryBloc>()
+                                    .add(IncentiveHistoryGetHistoryByFilter(
+                                      filter: result,
+                                    ));
+                              }
+                            }
                           },
                         )
                       ],

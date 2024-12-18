@@ -31,9 +31,15 @@ class PeriodFilterSection extends StatelessWidget {
 
             if (result != null && context.mounted) {
               if (result) {
-                // TODO: Update optionedPeriod to add the selected period
+                final period =
+                    context.read<PeriodPickerBloc>().state.selectedPeriod!;
+                context
+                    .read<FilterBloc>()
+                    .add(FilterChangeSelectedPeriod(selectedPeriod: period));
 
-                // TODO: Update period in filter state
+                context
+                    .read<PeriodPickerBloc>()
+                    .add(PeriodPickerUpdateOption());
               }
             }
           },
