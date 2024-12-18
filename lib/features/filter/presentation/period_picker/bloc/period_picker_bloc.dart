@@ -161,7 +161,9 @@ class PeriodPickerBloc extends Bloc<PeriodPickerEvent, PeriodPickerState> {
     Period newPeriod = Period(
       name: periodName,
       startDate: event.startDate,
-      endDate: event.startDate,
+      endDate: event.startDate
+          .add(const Duration(days: 1))
+          .subtract(const Duration(milliseconds: 1)),
     );
 
     emit(state.copyWith(
