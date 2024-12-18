@@ -74,10 +74,12 @@ class PeriodPickerBloc extends Bloc<PeriodPickerEvent, PeriodPickerState> {
   ) {
     final currentOptions = state.optionedPeriods;
 
-    if (!currentOptions.contains(event.selectedPeriod)) {
-      currentOptions.add(event.selectedPeriod);
+    if (!currentOptions.contains(state.selectedPeriod)) {
       emit(state.copyWith(
-        optionedPeriods: currentOptions,
+        optionedPeriods: [
+          state.selectedPeriod!,
+          ...state.optionedPeriods.getRange(0, state.optionedPeriods.length - 1)
+        ],
       ));
     }
   }
