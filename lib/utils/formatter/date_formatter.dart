@@ -55,4 +55,14 @@ class DateFormatter {
 
     return formatter.format(date);
   }
+
+  static bool isDateIsInsideRange(
+    DateTime date,
+    DateTime startRange,
+    DateTime endRage,
+  ) {
+    if (date.isAfter(startRange) && date.isBefore(endRage)) return true;
+
+    return false;
+  }
 }
