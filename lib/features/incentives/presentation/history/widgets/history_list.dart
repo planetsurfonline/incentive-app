@@ -41,7 +41,7 @@ class HistoryList extends StatelessWidget {
             );
           }
 
-          if (state.allHistories.isEmpty) {
+          if (state.displayedHistories.isEmpty) {
             return const Padding(
               padding: EdgeInsets.only(top: extraLargePadding),
               child: Center(
