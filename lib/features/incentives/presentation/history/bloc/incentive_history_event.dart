@@ -19,3 +19,12 @@ final class IncentiveHistoryFilterDisplay extends IncentiveHistoryEvent {
   @override
   List<Object> get props => [searchQuery];
 }
+
+final class IncentiveHistoryGetHistoryByFilter extends IncentiveHistoryEvent {
+  final FilterState filter;
+
+  const IncentiveHistoryGetHistoryByFilter({required this.filter});
+
+  @override
+  List<Object> get props => [filter];
+}
