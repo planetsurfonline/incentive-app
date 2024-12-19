@@ -6,14 +6,14 @@ import 'package:psm_incentive/features/incentives/domain/models.dart';
 import 'package:psm_incentive/features/store/domain/models.dart';
 
 class Dummy {
-  static List<Incentive> getIncentiveRecords({int itemCount = 5}) {
-    final List<Incentive> result = [];
+  static List<IncentiveData> getIncentiveRecords({int itemCount = 5}) {
+    final List<IncentiveData> result = [];
     final Random random = Random();
 
     final now = DateTime.now();
 
     final randomInvoiceAndIncentive = random.nextDouble() * 10000;
-    final todaysRecord = Incentive(
+    final todaysRecord = IncentiveData(
       invoiceNumber: 'INV #$randomInvoiceAndIncentive',
       invoiceDate: now,
       amount: randomInvoiceAndIncentive,
@@ -32,7 +32,7 @@ class Dummy {
         continue;
       }
 
-      final temp = Incentive(
+      final temp = IncentiveData(
         invoiceNumber: 'INV #$randomInvoiceAndIncentive',
         invoiceDate: randomDateTime,
         amount: randomInvoiceAndIncentive,
@@ -46,15 +46,15 @@ class Dummy {
     return result;
   }
 
-  static List<Incentive> generateIncentiveList({int itemCount = 5}) {
-    final List<Incentive> result = [];
+  static List<IncentiveData> generateIncentiveList({int itemCount = 5}) {
+    final List<IncentiveData> result = [];
     final Random random = Random();
 
     final now = DateTime.now();
 
     final randomIncentiveAmount = random.nextDouble() * 10000;
     final randomInvoiceNumber = random.nextInt(9999999) + 1000000;
-    final todaysRecord = Incentive(
+    final todaysRecord = IncentiveData(
       invoiceNumber: 'INV #$randomInvoiceNumber',
       invoiceDate: now,
       amount: randomIncentiveAmount,
@@ -75,7 +75,7 @@ class Dummy {
         continue;
       }
 
-      final temp = Incentive(
+      final temp = IncentiveData(
         invoiceNumber: 'INV #$randomInvoiceNumber',
         invoiceDate: randomDateTime,
         amount: randomIncentiveAmount,
@@ -89,58 +89,58 @@ class Dummy {
     return result;
   }
 
-  static List<Incentive> incentiveList = [
-    Incentive(
+  static List<IncentiveData> incentiveList = [
+    IncentiveData(
       invoiceNumber: "INV #4401961",
       invoiceDate: DateTime.parse("2024-12-18 10:50:25.221398"),
       amount: 9192.516974893973,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #9967342",
       invoiceDate: DateTime.parse("2024-09-24 00:00:00.000"),
       amount: 1554.370908060194,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #8922289",
       invoiceDate: DateTime.parse("2024-07-27 00:00:00.000"),
       amount: 344.6961915646818,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #9016819",
       invoiceDate: DateTime.parse("2024-06-08 00:00:00.000"),
       amount: 5467.660350285959,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #5550352",
       invoiceDate: DateTime.parse("2024-04-27 00:00:00.000"),
       amount: 1351.206004952451,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #4301462",
       invoiceDate: DateTime.parse("2024-04-26 00:00:00.000"),
       amount: 2885.6085210448746,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #9616595",
       invoiceDate: DateTime.parse("2024-04-14 00:00:00.000"),
       amount: 5949.52337468577,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #9777392",
       invoiceDate: DateTime.parse("2024-04-01 00:00:00.000"),
       amount: 2294.740659586251,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #9906477",
       invoiceDate: DateTime.parse("2024-01-15 00:00:00.000"),
       amount: 4272.576066942213,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #5914967",
       invoiceDate: DateTime.parse("2023-12-17 00:00:00.000"),
       amount: 554.4931793754382,
     ),
-    Incentive(
+    IncentiveData(
       invoiceNumber: "INV #9389548",
       invoiceDate: DateTime.parse("2023-12-07 00:00:00.000"),
       amount: 1481.879528947777,

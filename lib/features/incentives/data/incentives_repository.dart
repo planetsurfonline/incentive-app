@@ -12,7 +12,7 @@ class IncentivesRepository {
   final IncentivesProvider _provider = IncentivesProvider();
   final IncentiveHistoryProvider _historyProvider = IncentiveHistoryProvider();
 
-  Future<List<Incentive>> getRecentHistory() async {
+  Future<List<IncentiveData>> getRecentHistory() async {
     try {
       final result = await _historyProvider.getRecentHistoryData();
 
@@ -26,7 +26,7 @@ class IncentivesRepository {
     }
   }
 
-  Future<List<Incentive>> getAllIncentiveHistory() async {
+  Future<List<IncentiveData>> getAllIncentiveHistory() async {
     try {
       final result = await _historyProvider.getRecentHistoryData();
 
@@ -54,7 +54,7 @@ class IncentivesRepository {
     }
   }
 
-  Future<List<Incentive>> getIncentiveHistoryByFilter(
+  Future<List<IncentiveData>> getIncentiveHistoryByFilter(
     FilterState filter,
   ) async {
     try {
