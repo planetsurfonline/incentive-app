@@ -3,9 +3,9 @@ part of 'incentive_history_bloc.dart';
 final class IncentiveHistoryState extends Equatable {
   final Status status;
   final String message;
-  final List<Incentive> recentHistories;
-  final List<Incentive> allHistories;
-  final List<Incentive> displayedHistories;
+  final List<IncentiveData> recentHistories;
+  final List<IncentiveData> allHistories;
+  final List<IncentiveData> displayedHistories;
 
   const IncentiveHistoryState({
     this.status = Status.loading,
@@ -18,9 +18,9 @@ final class IncentiveHistoryState extends Equatable {
   IncentiveHistoryState copyWith({
     Status? status,
     String? message,
-    List<Incentive>? recentHistories,
-    List<Incentive>? allHistories,
-    List<Incentive>? displayedHistories,
+    List<IncentiveData>? recentHistories,
+    List<IncentiveData>? allHistories,
+    List<IncentiveData>? displayedHistories,
   }) {
     return IncentiveHistoryState(
       status: status ?? this.status,

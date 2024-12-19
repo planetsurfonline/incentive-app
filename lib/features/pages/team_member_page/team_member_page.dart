@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:psm_incentive/features/filter/presentation/filter_sheet/bloc/filter_bloc.dart';
 import 'package:psm_incentive/features/filter/presentation/filter_sheet/filter_sheet.dart';
 import 'package:psm_incentive/features/members/presentation/member_list/bloc/member_list_bloc.dart';
+import 'package:psm_incentive/features/members/presentation/member_list/member_list.dart';
 import 'package:psm_incentive/features/search/custom_search_bar.dart';
 import 'package:psm_incentive/shared/enum/status.dart';
 import 'package:psm_incentive/shared/widgets/widgets.dart';
@@ -14,8 +15,15 @@ class TeamMemberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MemberListBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MemberListBloc()..add(MemberListGetAllMember()),
+        ),
+        BlocProvider(
+          create: (context) => FilterBloc(),
+        ),
+      ],
       child: const TeamMemberPageView(),
     );
   }
@@ -71,12 +79,15 @@ class _TeamMemberPageState extends State<TeamMemberPageView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(context.strings.teamMemberListLabel),
-        actions: const [IncentiveVisibilityToggle()],
+        actions: const [
+          IncentiveVisibilityToggle(),
+        ],
       ),
       body: RefreshIndicator(
         onRefresh: () async {},
         child: Stack(
           children: [
+            const MemberList(),
             BlocBuilder<MemberListBloc, MemberListState>(
               builder: (context, state) {
                 if (state.status == Status.loading) return const SizedBox();
@@ -109,7 +120,10 @@ class _TeamMemberPageState extends State<TeamMemberPageView> {
                               builder: (_) {
                                 return BlocProvider.value(
                                   value: BlocProvider.of<FilterBloc>(context),
-                                  child: const FilterSheet(),
+                                  child: const FilterSheet(
+                                    showJobRoleSection: true,
+                                    showStoreSection: true,
+                                  ),
                                 );
                               },
                             ) as FilterState?;

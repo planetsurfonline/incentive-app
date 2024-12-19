@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:psm_incentive/features/filter/domain/models.dart';
 
 enum JobRoleEnum {
@@ -6,7 +9,31 @@ enum JobRoleEnum {
   inventory,
   storeHead,
   seniorStoreHead,
-  areaManager,
+  areaManager;
+
+  static JobRoleEnum fromMap(Map<String, dynamic> map) {
+    switch (map['job_role']) {
+      case 'sales':
+        return JobRoleEnum.sales;
+      case 'cashier':
+        return JobRoleEnum.cashier;
+      case 'inventory':
+        return JobRoleEnum.inventory;
+      case 'senior_store_head':
+        return JobRoleEnum.seniorStoreHead;
+      case 'area_manager':
+        return JobRoleEnum.areaManager;
+
+      default:
+        return JobRoleEnum.sales;
+    }
+  }
+}
+
+extension JobRoleEnumX on JobRoleEnum {
+  Map<String, dynamic> toMap() {
+    return {'job_role': name};
+  }
 }
 
 class JobRole implements Filter {
@@ -46,4 +73,22 @@ class JobRole implements Filter {
   String toString() {
     return label;
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'jobRole': jobRole.toMap(),
+    };
+  }
+
+  factory JobRole.fromMap(Map<String, dynamic> map) {
+    return JobRole(
+      jobRole: JobRoleEnum.fromMap((map["jobRole"] ??
+          Map<String, dynamic>.from({})) as Map<String, dynamic>),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory JobRole.fromJson(String source) =>
+      JobRole.fromMap(json.decode(source) as Map<String, dynamic>);
 }

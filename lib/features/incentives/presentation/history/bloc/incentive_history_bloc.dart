@@ -35,7 +35,7 @@ class IncentiveHistoryBloc
     try {
       emit(state.copyWith(status: Status.loading));
 
-      final List<Incentive> items = await _repository.getRecentHistory();
+      final List<IncentiveData> items = await _repository.getRecentHistory();
 
       emit(state.copyWith(
         status: Status.success,
@@ -59,7 +59,8 @@ class IncentiveHistoryBloc
     try {
       emit(state.copyWith(status: Status.loading));
 
-      final List<Incentive> items = await _repository.getAllIncentiveHistory();
+      final List<IncentiveData> items =
+          await _repository.getAllIncentiveHistory();
 
       emit(state.copyWith(
         status: Status.success,
@@ -94,7 +95,7 @@ class IncentiveHistoryBloc
     try {
       emit(state.copyWith(status: Status.loading));
 
-      final List<Incentive> items =
+      final List<IncentiveData> items =
           await _repository.getIncentiveHistoryByFilter(
         event.filter,
       );
