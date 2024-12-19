@@ -15,6 +15,11 @@ ThemeData buildTheme() {
         fontSize: 22,
       ),
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+    ),
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateColor.resolveWith(
         (states) => states.isEmpty ? Colors.white : Colors.red,
@@ -158,6 +163,11 @@ ThemeData buildDarkTheme() {
         color: Colors.white,
         fontSize: 22,
       ),
+    ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Color(0xFF0D0F10),
+      selectedItemColor: Colors.white60,
+      unselectedItemColor: Colors.grey,
     ),
     checkboxTheme: CheckboxThemeData(
       fillColor: WidgetStateColor.resolveWith(
