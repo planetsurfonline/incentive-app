@@ -18,18 +18,17 @@ class Member {
     required this.incentive,
   });
 
-  Member copyWith({
-    String? fullname,
-    JobRole? jobRole,
-    Store? store,
-    Incentive? incentive,
-  }) {
-    return Member(
-      fullname: fullname ?? this.fullname,
-      jobRole: jobRole ?? this.jobRole,
-      store: store ?? this.store,
-      incentive: incentive ?? this.incentive,
-    );
+  String get nameInitials {
+    List<String> names = fullname.trim().split(' ');
+
+    if (names.length > 1) {
+      String initials = names.first[0] + names.last[0];
+      return initials.toUpperCase();
+    } else if (names.isNotEmpty) {
+      return names.first[0].toUpperCase();
+    } else {
+      return '';
+    }
   }
 
   Map<String, dynamic> toMap() {
