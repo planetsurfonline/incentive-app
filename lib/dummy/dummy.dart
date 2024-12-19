@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:psm_incentive/features/filter/domain/models.dart';
-import 'package:psm_incentive/features/incentives/domain/incentive.dart';
 import 'package:psm_incentive/features/incentives/domain/models.dart';
+import 'package:psm_incentive/features/members/domain/models.dart';
 import 'package:psm_incentive/features/store/domain/models.dart';
 
 class Dummy {
@@ -214,5 +214,50 @@ class Dummy {
     const Store(storeName: 'PS SINGKAWANG', storeUuid: 'PSSINGKAWANG'),
     const Store(storeName: 'PS BANJARMASIN', storeUuid: 'PSBANJARMASIN'),
     const Store(storeName: 'PS BANDUNG', storeUuid: 'PSBANDUNG'),
+  ];
+
+  static final List<Member> members = [
+    Member(
+      fullname: 'Almayra',
+      jobRole: JobRole(jobRole: JobRoleEnum.sales),
+      store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+      incentive: Incentive(amount: 250000),
+    ),
+    Member(
+      fullname: 'James Christian Wira',
+      jobRole: JobRole(jobRole: JobRoleEnum.areaManager),
+      store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+      incentive: Incentive(amount: 290000),
+    ),
+    Member(
+      fullname: 'Handriki Kasa',
+      jobRole: JobRole(jobRole: JobRoleEnum.storeHead),
+      store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+      incentive: Incentive(amount: 220000),
+    ),
+    Member(
+      fullname: 'Matthew Evans',
+      jobRole: JobRole(jobRole: JobRoleEnum.seniorStoreHead),
+      store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+      incentive: Incentive(amount: 210000),
+    ),
+    Member(
+      fullname: 'Willy Wilsen',
+      jobRole: JobRole(jobRole: JobRoleEnum.cashier),
+      store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+      incentive: Incentive(amount: 260000),
+    ),
+    Member(
+      fullname: 'Fikri Raihan',
+      jobRole: JobRole(jobRole: JobRoleEnum.inventory),
+      store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+      incentive: Incentive(amount: 270000),
+    ),
+    Member(
+      fullname: 'Farhan Hafizh',
+      jobRole: JobRole(jobRole: JobRoleEnum.sales),
+      store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
+      incentive: Incentive(amount: 220000),
+    ),
   ];
 }
