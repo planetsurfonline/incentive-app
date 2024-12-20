@@ -84,7 +84,9 @@ class _TeamMemberPageState extends State<TeamMemberPageView> {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async {},
+        onRefresh: () async {
+          context.read<MemberListBloc>().add(MemberListGetAllMember());
+        },
         child: Stack(
           children: [
             const MemberList(),
