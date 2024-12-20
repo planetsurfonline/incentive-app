@@ -259,5 +259,35 @@ class Dummy {
       store: const Store(storeName: 'PS PAKU', storeUuid: 'PSPAKU'),
       incentive: Incentive(amount: 220000),
     ),
+    Member(
+      fullname: 'Gusti Anugrah Harimurti',
+      jobRole: JobRole(jobRole: JobRoleEnum.sales),
+      store: const Store(storeName: 'PS BALI', storeUuid: 'PSBALI'),
+      incentive: Incentive(amount: 250000),
+    ),
+    Member(
+      fullname: 'Yudi Pratama',
+      jobRole: JobRole(jobRole: JobRoleEnum.areaManager),
+      store: const Store(storeName: 'PS BALI', storeUuid: 'PSBALI'),
+      incentive: Incentive(amount: 290000),
+    ),
+    Member(
+      fullname: 'Denis Prawira',
+      jobRole: JobRole(jobRole: JobRoleEnum.storeHead),
+      store: const Store(storeName: 'PS BALI', storeUuid: 'PSBALI'),
+      incentive: Incentive(amount: 220000),
+    ),
+    Member(
+      fullname: 'Adi Saputra',
+      jobRole: JobRole(jobRole: JobRoleEnum.inventory),
+      store: const Store(storeName: 'PS BALI', storeUuid: 'PSBALI'),
+      incentive: Incentive(amount: 210000),
+    ),
+    Member(
+      fullname: 'Putu Wirawan',
+      jobRole: JobRole(jobRole: JobRoleEnum.cashier),
+      store: const Store(storeName: 'PS BALI', storeUuid: 'PSBALI'),
+      incentive: Incentive(amount: 260000),
+    ),
   ];
 }
