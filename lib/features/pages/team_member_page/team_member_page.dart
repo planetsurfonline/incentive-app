@@ -127,6 +127,7 @@ class _TeamMemberPageState extends State<TeamMemberPageView> {
                                 return BlocProvider.value(
                                   value: BlocProvider.of<FilterBloc>(context),
                                   child: const FilterSheet(
+                                    // TODO: hide role and store filter if user is not leader (SSH & AM)
                                     showJobRoleSection: true,
                                     showStoreSection: true,
                                   ),
@@ -137,6 +138,11 @@ class _TeamMemberPageState extends State<TeamMemberPageView> {
                             if (result != null) {
                               if (context.mounted) {
                                 // TODO: Apply Filter
+                                context
+                                    .read<MemberListBloc>()
+                                    .add(MemberListGetMemberByFilter(
+                                      filter: result,
+                                    ));
                               }
                             }
                           },

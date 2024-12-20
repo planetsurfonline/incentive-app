@@ -17,3 +17,12 @@ final class MemberListShowSearched extends MemberListEvent {
   @override
   List<Object> get props => [searchQuery];
 }
+
+final class MemberListGetMemberByFilter extends MemberListEvent {
+  final FilterState filter;
+
+  const MemberListGetMemberByFilter({required this.filter});
+
+  @override
+  List<Object> get props => [filter];
+}
