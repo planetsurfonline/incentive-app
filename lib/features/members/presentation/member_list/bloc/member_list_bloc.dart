@@ -12,6 +12,8 @@ part 'member_list_state.dart';
 class MemberListBloc extends Bloc<MemberListEvent, MemberListState> {
   MemberListBloc() : super(const MemberListState()) {
     on<MemberListGetAllMember>(_onMemberListGetAllMember);
+
+    on<MemberListShowSearched>(_onMemberListShowSearched);
   }
 
   Future<void> _onMemberListGetAllMember(
@@ -38,5 +40,19 @@ class MemberListBloc extends Bloc<MemberListEvent, MemberListState> {
         message: '',
       ));
     }
+  }
+
+  void _onMemberListShowSearched(
+    MemberListShowSearched event,
+    Emitter<MemberListState> emit,
+  ) {
+    final displayedList = state.memberList
+        .where((member) =>
+            member.fullname.toLowerCase().contains(event.searchQuery))
+        .toList();
+
+    emit(state.copyWith(
+      displayedMemberList: displayedList,
+    ));
   }
 }

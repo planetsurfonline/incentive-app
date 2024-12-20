@@ -188,5 +188,9 @@
   "teamMemberListLabel": "Anggota Tim",
   "@teamMemberListLabel": {
     "description": "Team member list label"
+  },
+  "searchTeamMemberLabel": "Cari anggota tim",
+  "@searchTeamMemberLabel": {
+    "description": "Search team member label"
   }
 }

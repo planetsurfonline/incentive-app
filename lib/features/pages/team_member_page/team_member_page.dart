@@ -84,7 +84,9 @@ class _TeamMemberPageState extends State<TeamMemberPageView> {
         ],
       ),
       body: RefreshIndicator(
-        onRefresh: () async {},
+        onRefresh: () async {
+          context.read<MemberListBloc>().add(MemberListGetAllMember());
+        },
         child: Stack(
           children: [
             const MemberList(),
@@ -106,9 +108,13 @@ class _TeamMemberPageState extends State<TeamMemberPageView> {
                         Expanded(
                           child: CustomSearchBar(
                             icon: const Icon(Icons.search),
-                            hintText: context.strings.searchInvoiceLabel,
+                            hintText: context.strings.searchTeamMemberLabel,
                             onChanged: (text) {
-                              // TOOD: Apply search
+                              context
+                                  .read<MemberListBloc>()
+                                  .add(MemberListShowSearched(
+                                    searchQuery: text,
+                                  ));
                             },
                           ),
                         ),
