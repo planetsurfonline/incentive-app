@@ -8,54 +8,24 @@ class MemberListLoading extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: mediumPadding),
-        Shimmer.fromColors(
-          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
-          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
-          child: const BannerPlaceholder(
-            height: 56,
-            width: double.infinity,
-          ),
-        ),
-        const SizedBox(height: mediumPadding),
-        Shimmer.fromColors(
-          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
-          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
-          child: const BannerPlaceholder(
-            height: 56,
-            width: double.infinity,
-          ),
-        ),
-        const SizedBox(height: mediumPadding),
-        Shimmer.fromColors(
-          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
-          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
-          child: const BannerPlaceholder(
-            height: 56,
-            width: double.infinity,
-          ),
-        ),
-        const SizedBox(height: mediumPadding),
-        Shimmer.fromColors(
-          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
-          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
-          child: const BannerPlaceholder(
-            height: 56,
-            width: double.infinity,
-          ),
-        ),
-        const SizedBox(height: mediumPadding),
-        Shimmer.fromColors(
-          baseColor: Theme.of(context).colorScheme.tertiaryFixed,
-          highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
-          child: const BannerPlaceholder(
-            height: 56,
-            width: double.infinity,
-          ),
-        ),
-      ],
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 15,
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            Shimmer.fromColors(
+              baseColor: Theme.of(context).colorScheme.tertiaryFixed,
+              highlightColor: Theme.of(context).colorScheme.tertiaryFixedDim,
+              child: const BannerPlaceholder(
+                height: 56,
+                width: double.infinity,
+              ),
+            ),
+            const SizedBox(height: mediumPadding),
+          ],
+        );
+      },
     );
   }
 }
