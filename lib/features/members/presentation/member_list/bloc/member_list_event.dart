@@ -8,3 +8,12 @@ sealed class MemberListEvent extends Equatable {
 }
 
 final class MemberListGetAllMember extends MemberListEvent {}
+
+final class MemberListShowSearched extends MemberListEvent {
+  final String searchQuery;
+
+  const MemberListShowSearched({required this.searchQuery});
+
+  @override
+  List<Object> get props => [searchQuery];
+}
