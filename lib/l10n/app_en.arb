@@ -45,5 +45,6 @@
   "lowToHighLabel": "Low - High",
   "previouslyLabel": "Previously",
   "resultLabel": "Result",
-  "teamMemberListLabel": "Team Member"
+  "teamMemberListLabel": "Team Member",
+  "searchTeamMemberLabel": "Search team member"
 }
